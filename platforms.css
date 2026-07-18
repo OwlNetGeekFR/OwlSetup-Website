@@ -1,0 +1,266 @@
+.platforms {
+  padding-block: 100px;
+  border-bottom: 1px solid var(--line);
+}
+
+.platform-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.platform-card {
+  min-height: 480px;
+  padding: 24px;
+  border: 1px solid #26354a;
+  border-radius: 17px;
+  background: linear-gradient(150deg, #121b29, #0d141e);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 55px rgba(0, 0, 0, .18);
+}
+
+.platform-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: var(--platform-accent);
+}
+
+.windows-card { --platform-accent: linear-gradient(90deg, #2679ee, #54c8f0); }
+.linux-card { --platform-accent: linear-gradient(90deg, #f0c23d, #f08a35); }
+.macos-card { --platform-accent: linear-gradient(90deg, #9eabbc, #f1f4f8); }
+
+.platform-top {
+  min-height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.platform-icon,
+.platform-logo {
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+}
+
+.platform-icon {
+  border-radius: 15px;
+  display: grid;
+  place-items: center;
+  font-size: 36px;
+}
+
+.windows-mark {
+  color: #7ecaff;
+  background: linear-gradient(145deg, #173f73, #10213a);
+  border: 1px solid #2f6095;
+}
+
+.platform-logo.apple-logo { padding: 5px; }
+
+.platform-status {
+  padding: 5px 8px;
+  border-radius: 6px;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: .12em;
+}
+
+.beta-status {
+  color: #f1b85e;
+  border: 1px solid #725229;
+  background: rgba(218, 151, 61, .1);
+}
+
+.stable-status {
+  color: #64dfb0;
+  border: 1px solid #276c55;
+  background: rgba(48, 190, 139, .11);
+}
+
+.pending-status {
+  color: #aeb9c9;
+  border: 1px solid #445166;
+  background: rgba(113, 128, 151, .1);
+}
+
+.coming-soon-card {
+  border-style: dashed;
+  background: linear-gradient(150deg, #111923, #0b1119);
+}
+
+.platform-card h3 {
+  margin: 23px 0 9px;
+  font-size: 20px;
+}
+
+.platform-card > p {
+  min-height: 65px;
+  margin: 0;
+  color: #778599;
+  font-size: 11px;
+  line-height: 1.65;
+}
+
+.platform-card ul {
+  margin: 22px 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+
+.platform-card li {
+  color: #a4afbd;
+  font-size: 10px;
+}
+
+.platform-card li::before {
+  content: "✓";
+  margin-right: 9px;
+  color: #4bd1a0;
+}
+
+.platform-meta {
+  margin-top: auto;
+  padding: 14px 0;
+  border-top: 1px solid #243146;
+  display: flex;
+  justify-content: space-between;
+  color: #637188;
+  font-size: 8px;
+}
+
+.platform-download {
+  height: 48px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  font-size: 10px;
+  font-weight: 800;
+  transition: .2s;
+}
+
+.platform-download:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+.windows-download {
+  background: linear-gradient(90deg, #3471e5, #4b8cf2);
+  box-shadow: 0 12px 28px rgba(54, 105, 218, .22);
+}
+
+.linux-download {
+  color: #15191f;
+  background: linear-gradient(90deg, #e7b839, #ef8a32);
+  box-shadow: 0 12px 28px rgba(221, 153, 45, .16);
+}
+
+.macos-download {
+  color: #111721;
+  background: linear-gradient(90deg, #b9c4d2, #f1f4f8);
+  box-shadow: 0 12px 28px rgba(187, 201, 218, .12);
+}
+
+.pending-download,
+.pending-download:hover {
+  border: 1px solid #344157;
+  color: #77859a;
+  background: #111823;
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
+  filter: none;
+}
+
+.availability-note {
+  border-color: #2c506b;
+  background: rgba(42, 107, 145, .08);
+}
+
+.availability-note > span {
+  color: #75cfe4;
+  background: #173d50;
+}
+
+.availability-note p { color: #7895a4; }
+.availability-note strong { color: #9cd8e4; }
+
+.platform-card > small {
+  min-height: 29px;
+  margin-top: 10px;
+  color: #59677a;
+  font-size: 8px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.platform-card code {
+  color: #8fa5c3;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+}
+
+.beta-warning {
+  margin-top: 14px;
+  padding: 14px 17px;
+  border: 1px solid #58472b;
+  border-radius: 11px;
+  background: rgba(127, 94, 33, .08);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.beta-warning > span {
+  width: 25px;
+  height: 25px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: #665024;
+  color: #f3c65e;
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.beta-warning p {
+  margin: 0;
+  color: #8c816d;
+  font-size: 9px;
+  line-height: 1.6;
+}
+
+.beta-warning strong {
+  color: #c9b078;
+  margin-right: 5px;
+}
+
+.multi-download-banner { margin-top: 15px; }
+
+@media (max-width: 900px) {
+  .platform-grid { grid-template-columns: 1fr; }
+  .platform-card { min-height: 0; }
+  .platform-card > p { min-height: 0; }
+  .platforms { padding-block: 80px; }
+}
+
+@media (max-width: 580px) {
+  .platforms { padding-block: 65px; }
+  .platform-card { padding: 20px; }
+  .platform-card h3 { font-size: 18px; }
+  .platform-meta {
+    align-items: flex-start;
+    gap: 8px;
+    flex-direction: column;
+  }
+  .beta-warning { align-items: flex-start; }
+}

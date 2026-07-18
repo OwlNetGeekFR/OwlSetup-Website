@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://owlnetgeekfr.github.io/OwlSetup-Website/sitemap.xml

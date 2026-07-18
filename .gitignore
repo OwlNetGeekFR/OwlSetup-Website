@@ -1,0 +1,13 @@
+# Ne jamais publier de paquets ou exécutables depuis le dépôt du site.
+*.exe
+*.msi
+*.zip
+*.7z
+downloads/
+
+# Fichiers locaux.
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
