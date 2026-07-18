@@ -106,6 +106,49 @@ renderSoftware();
 setupRevealAnimations();
 animateStats();
 
+function formatMegabytes(bytes){
+  return `${(bytes/1024/1024).toLocaleString("fr-FR",{minimumFractionDigits:1,maximumFractionDigits:1})} Mo`;
+}
+
+async function syncReleaseMetadata(){
+  try{
+    const response=await fetch("release.json",{cache:"no-store"});
+    if(!response.ok)throw new Error(`release.json: ${response.status}`);
+    const release=await response.json();
+    if(release.schemaVersion!==1||!/^[0-9]+\.[0-9]+\.[0-9]+$/.test(release.version))throw new Error("Métadonnées de version invalides");
+    const required=["OwlSetup-Setup.exe","OwlSetup.exe","SHA256.txt"];
+    if(required.some(name=>!release.assets?.[name]?.url))throw new Error("Fichiers de Release incomplets");
+
+    document.querySelectorAll("[data-release-version]").forEach(element=>element.textContent=release.version);
+    document.querySelectorAll("[data-release-label]").forEach(element=>{
+      element.textContent=element.dataset.releaseLabel.replace("{version}",release.version);
+    });
+    document.querySelectorAll("[data-release-page]").forEach(element=>element.href=release.releaseUrl);
+    document.querySelectorAll("[data-release-asset]").forEach(element=>{
+      const asset=release.assets[element.dataset.releaseAsset];
+      if(asset?.url)element.href=asset.url;
+    });
+
+    const published=new Intl.DateTimeFormat("fr-FR",{day:"numeric",month:"long",year:"numeric"}).format(new Date(release.publishedAt));
+    const installer=release.assets["OwlSetup-Setup.exe"];
+    const portable=release.assets["OwlSetup.exe"];
+    $("#releaseMeta").textContent=`Publiée le ${published} · Installateur ${formatMegabytes(installer.size)}`;
+    $("#portableMeta").textContent=`Aucune installation · ${formatMegabytes(portable.size)}`;
+
+    const hash=installer.sha256;
+    if(/^[A-F0-9]{64}$/.test(hash)){
+      $("#installerHash").textContent=`${hash.slice(0,8)}…${hash.slice(-8)}`;
+      $("#copyInstallerHash").dataset.copyHash=hash;
+    }
+    document.documentElement.dataset.releaseSync="ok";
+  }catch(error){
+    console.warn("Synchronisation de la Release indisponible, utilisation des liens de secours.",error);
+    document.documentElement.dataset.releaseSync="fallback";
+  }
+}
+
+syncReleaseMetadata();
+
 const menuToggle=$("#menuToggle");
 const mainNav=$("#mainNav");
 menuToggle?.addEventListener("click",()=>{

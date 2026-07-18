@@ -1,0 +1,29 @@
+{
+    "schemaVersion":  1,
+    "version":  "3.4.1",
+    "tag":  "v3.4.1",
+    "publishedAt":  "2026-07-18T15:13:13Z",
+    "releaseUrl":  "https://github.com/OwlNetGeekFR/OwlSetup/releases/tag/v3.4.1",
+    "assets":  {
+                   "OwlSetup-Setup.exe":  {
+                                              "url":  "https://github.com/OwlNetGeekFR/OwlSetup/releases/download/v3.4.1/OwlSetup-Setup.exe",
+                                              "size":  2917009,
+                                              "sha256":  "DD72081E365E61C8B26EAB29429E90DA843B9321F641D8ED4A704EE5222D4169"
+                                          },
+                   "OwlSetup.exe":  {
+                                        "url":  "https://github.com/OwlNetGeekFR/OwlSetup/releases/download/v3.4.1/OwlSetup.exe",
+                                        "size":  1978880,
+                                        "sha256":  "9F9522792E54637B20ABEF270BC569508BD39A99789A54A0389CF8E6CC326610"
+                                    },
+                   "PC-Setup.exe":  {
+                                        "url":  "https://github.com/OwlNetGeekFR/OwlSetup/releases/download/v3.4.1/PC-Setup.exe",
+                                        "size":  1978880,
+                                        "sha256":  "9F9522792E54637B20ABEF270BC569508BD39A99789A54A0389CF8E6CC326610"
+                                    },
+                   "SHA256.txt":  {
+                                      "url":  "https://github.com/OwlNetGeekFR/OwlSetup/releases/download/v3.4.1/SHA256.txt",
+                                      "size":  246,
+                                      "sha256":  null
+                                  }
+               }
+}
