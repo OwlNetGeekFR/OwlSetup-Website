@@ -65,6 +65,6 @@ $manifest = [ordered]@{
 }
 
 $output = [IO.Path]::GetFullPath($OutputPath)
-$json = $manifest | ConvertTo-Json -Depth 6
+$json = $manifest | ConvertTo-Json -Depth 6 -Compress
 [IO.File]::WriteAllText($output, "$json`n", [Text.UTF8Encoding]::new($false))
 Write-Host "Release $($release.tag_name) synchronisée dans $output" -ForegroundColor Green
