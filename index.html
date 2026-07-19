@@ -17,13 +17,14 @@
   <link rel="stylesheet" href="platforms.css">
   <link rel="stylesheet" href="animations.css">
   <link rel="stylesheet" href="local-upgrade.css">
+  <link rel="stylesheet" href="support.css">
 </head>
 <body>
   <div class="aurora aurora-a"></div><div class="aurora aurora-b"></div>
   <header class="topnav">
     <a class="site-brand" href="#top"><img src="assets/owlsetup-logo.png" alt=""><span><strong>OwlSetup</strong><small>Windows maintenance</small></span></a>
     <button class="menu-toggle" id="menuToggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false"><span></span><span></span><span></span></button>
-    <nav id="mainNav"><a href="#platforms">Télécharger</a><a href="#features">Fonctionnalités</a><a href="#how">Utilisation</a><a href="#demo">Démo</a><a href="#security">Sécurité</a><a href="#faq">FAQ</a></nav>
+    <nav id="mainNav"><a href="#platforms">Télécharger</a><a href="#features">Fonctionnalités</a><a href="#how">Utilisation</a><a href="#demo">Démo</a><a href="#security">Sécurité</a><a href="#faq">FAQ</a><a class="support-nav" href="https://ko-fi.com/owlsetup" target="_blank" rel="noopener">Soutenir ♡</a></nav>
     <a class="nav-download" data-release-asset="OwlSetup-Setup.exe" href="https://github.com/OwlNetGeekFR/OwlSetup/releases/latest/download/OwlSetup-Setup.exe"><span>↓</span> Télécharger</a>
   </header>
 
@@ -149,6 +150,11 @@
       <div><span class="section-kicker">UNE APPROCHE RESPONSABLE</span><h2>Vous gardez le contrôle.</h2><p>Le tableau de santé analyse localement le disque et les versions disponibles. Chaque opération sensible reste confirmée avant son lancement.</p><div class="security-points"><span>✓ Analyse exécutée localement</span><span>✓ Versions comparées avant mise à jour</span><span>✓ Documents personnels protégés</span><span>✓ Sources éditeurs accessibles</span><span>✓ Code source consultable sur GitHub</span><span>✓ Téléchargements vérifiables par SHA-256</span></div><div class="security-links"><a href="https://github.com/OwlNetGeekFR/OwlSetup">Voir le code source ↗</a><a data-release-asset="SHA256.txt" href="https://github.com/OwlNetGeekFR/OwlSetup/releases/latest/download/SHA256.txt">Télécharger SHA256.txt ↗</a></div></div>
     </section>
 
+    <section class="support-banner section-shell" id="support">
+      <div><span>SOUTENIR LE PROJET</span><h2>OwlSetup reste gratuit et open source.</h2><p>Un don facultatif aide à financer les tests, l’hébergement et la future signature numérique. Le paiement est entièrement géré sur Ko-fi.</p></div>
+      <a class="button support-button" href="https://ko-fi.com/owlsetup" target="_blank" rel="noopener">Soutenir sur Ko-fi ♡</a>
+    </section>
+
     <section class="download-banner section-shell multi-download-banner">
       <img src="assets/owlsetup-logo.png" alt="">
       <div><span>OWLSETUP POUR WINDOWS</span><h2>La version stable est prête.</h2><p>Téléchargez OwlSetup <span data-release-version>3.4.1</span> depuis la Release officielle GitHub. Linux et macOS arriveront ultérieurement.</p></div>
@@ -166,7 +172,7 @@
     </section>
   </main>
 
-  <footer><div class="section-shell"><a class="site-brand" href="#top"><img src="assets/owlsetup-logo.png" alt=""><span><strong>OwlSetup</strong><small>Windows disponible</small></span></a><p>Installation, mise à jour et entretien de Windows.</p><nav><a href="https://github.com/OwlNetGeekFR/OwlSetup">GitHub</a><a href="https://github.com/OwlNetGeekFR/OwlSetup/blob/main/PRIVACY.md">Confidentialité</a><a href="https://github.com/OwlNetGeekFR/OwlSetup/issues">Assistance</a></nav><span>© 2026 OwlSetup</span></div></footer>
+  <footer><div class="section-shell"><a class="site-brand" href="#top"><img src="assets/owlsetup-logo.png" alt=""><span><strong>OwlSetup</strong><small>Windows disponible</small></span></a><p>Installation, mise à jour et entretien de Windows.</p><nav><a href="https://github.com/OwlNetGeekFR/OwlSetup">GitHub</a><a href="https://ko-fi.com/owlsetup" target="_blank" rel="noopener">Ko-fi</a><a href="https://github.com/OwlNetGeekFR/OwlSetup/blob/main/PRIVACY.md">Confidentialité</a><a href="https://github.com/OwlNetGeekFR/OwlSetup/issues">Assistance</a></nav><span>© 2026 OwlSetup</span></div></footer>
 
   <div class="site-toast" id="siteToast" role="status" aria-live="polite">Empreinte SHA-256 copiée</div>
 
