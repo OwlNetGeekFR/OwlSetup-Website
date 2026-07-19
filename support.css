@@ -1,0 +1,27 @@
+.support-nav {
+  color: #ef9cad !important;
+}
+
+.support-banner {
+  min-height: 150px;
+  margin-bottom: 24px;
+  padding: 27px 32px;
+  border: 1px solid #5b3542;
+  border-radius: 16px;
+  background: linear-gradient(100deg, rgba(98, 43, 59, .23), #101822);
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.support-banner > div { flex: 1; }
+.support-banner span { color: #d97d92; font-size: 8px; font-weight: 700; letter-spacing: .16em; }
+.support-banner h2 { margin: 8px 0 5px; font-size: 24px; }
+.support-banner p { max-width: 720px; margin: 0; color: #8f8090; font-size: 10px; line-height: 1.6; }
+.support-button { border: 1px solid #8b4b5e; background: #713447; color: #fff; white-space: nowrap; }
+.support-button:hover { background: #8a4057; }
+
+@media (max-width: 700px) {
+  .support-banner { align-items: stretch; flex-direction: column; text-align: center; }
+  .support-banner .support-button { width: 100%; }
+}
