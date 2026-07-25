@@ -1,0 +1,19 @@
+{
+  "name": "OwlSetup",
+  "short_name": "OwlSetup",
+  "description": "Installez, mettez à jour et entretenez Windows simplement.",
+  "lang": "fr-FR",
+  "start_url": "/",
+  "scope": "/",
+  "display": "browser",
+  "background_color": "#080c13",
+  "theme_color": "#080c13",
+  "icons": [
+    {
+      "src": "/assets/owlsetup-logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

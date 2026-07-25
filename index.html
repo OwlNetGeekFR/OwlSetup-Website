@@ -4,15 +4,49 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#080c13">
-  <meta name="description" content="Téléchargez OwlSetup pour installer, mettre à jour et entretenir Windows depuis une seule application open source.">
-  <link rel="canonical" href="https://owlnetgeekfr.github.io/OwlSetup-Website/">
-  <meta property="og:title" content="OwlSetup — Votre PC, simplement prêt">
-  <meta property="og:description" content="Installation, mises à jour et entretien de Windows avec des sources officielles.">
-  <meta property="og:image" content="https://owlnetgeekfr.github.io/OwlSetup-Website/assets/owlsetup-logo.png">
-  <meta property="og:url" content="https://owlnetgeekfr.github.io/OwlSetup-Website/">
+  <title>OwlSetup — Installer, mettre à jour et nettoyer Windows</title>
+  <meta name="description" content="OwlSetup est une application Windows gratuite et open source pour installer vos logiciels, appliquer les mises à jour et libérer de l’espace facilement.">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <meta name="author" content="OwlNetGeekFR">
+  <meta name="application-name" content="OwlSetup">
+  <link rel="canonical" href="https://owlsetup.owlnetgeek.fr/">
+  <link rel="alternate" hreflang="fr-FR" href="https://owlsetup.owlnetgeek.fr/">
+  <link rel="alternate" hreflang="x-default" href="https://owlsetup.owlnetgeek.fr/">
+  <meta property="og:title" content="OwlSetup — Entretenez Windows simplement">
+  <meta property="og:description" content="Installez vos logiciels, appliquez les mises à jour et libérez de l’espace avec une application gratuite et open source.">
+  <meta property="og:image" content="https://owlsetup.owlnetgeek.fr/assets/owlsetup-social.png">
+  <meta property="og:image:alt" content="OwlSetup, l’application gratuite pour installer, mettre à jour et entretenir Windows">
+  <meta property="og:image:width" content="1730">
+  <meta property="og:image:height" content="909">
+  <meta property="og:url" content="https://owlsetup.owlnetgeek.fr/">
   <meta property="og:type" content="website">
-  <title>OwlSetup — Maintenance simple pour Windows</title>
-  <link rel="icon" href="assets/owlsetup-logo.png">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="OwlSetup">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="OwlSetup — Entretenez Windows simplement">
+  <meta name="twitter:description" content="Installation de logiciels, mises à jour et nettoyage de Windows dans une seule application open source.">
+  <meta name="twitter:image" content="https://owlsetup.owlnetgeek.fr/assets/owlsetup-social.png">
+  <meta name="twitter:image:alt" content="Présentation de l’application OwlSetup pour Windows">
+  <link rel="icon" type="image/png" href="/assets/owlsetup-logo.png">
+  <link rel="apple-touch-icon" href="/assets/owlsetup-logo.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {"@type":"WebSite","@id":"https://owlsetup.owlnetgeek.fr/#website","url":"https://owlsetup.owlnetgeek.fr/","name":"OwlSetup","description":"Application gratuite et open source pour installer, mettre à jour et entretenir Windows.","inLanguage":"fr-FR","publisher":{"@id":"https://owlsetup.owlnetgeek.fr/#organization"}},
+      {"@type":"Organization","@id":"https://owlsetup.owlnetgeek.fr/#organization","name":"OwlNetGeekFR","url":"https://owlnetgeek.fr/","logo":"https://owlsetup.owlnetgeek.fr/assets/owlsetup-logo.png","sameAs":["https://github.com/OwlNetGeekFR"]},
+      {"@type":"SoftwareApplication","@id":"https://owlsetup.owlnetgeek.fr/#software","name":"OwlSetup","url":"https://owlsetup.owlnetgeek.fr/","downloadUrl":"https://github.com/OwlNetGeekFR/OwlSetup/releases/latest/download/OwlSetup-Setup.exe","softwareVersion":"3.6.0","operatingSystem":"Windows 10, Windows 11","applicationCategory":"UtilitiesApplication","description":"OwlSetup installe des logiciels depuis leurs sources officielles, applique les mises à jour et aide à libérer de l’espace sur Windows.","isAccessibleForFree":true,"license":"https://github.com/OwlNetGeekFR/OwlSetup/blob/main/LICENSE","author":{"@id":"https://owlsetup.owlnetgeek.fr/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR","availability":"https://schema.org/InStock"}},
+      {"@type":"FAQPage","@id":"https://owlsetup.owlnetgeek.fr/#faq","mainEntity":[
+        {"@type":"Question","name":"La démonstration modifie-t-elle mon ordinateur ?","acceptedAnswer":{"@type":"Answer","text":"Non. Toutes les actions du site sont simulées. Seule l’application téléchargée pour votre système peut lancer les opérations après votre confirmation."}},
+        {"@type":"Question","name":"Pourquoi une autorisation administrateur peut-elle être demandée ?","acceptedAnswer":{"@type":"Answer","text":"Certaines installations, mises à jour et zones protégées nécessitent les droits administrateur. OwlSetup ne les demande que lorsque l’opération en a besoin."}},
+        {"@type":"Question","name":"Mes documents personnels sont-ils supprimés ?","acceptedAnswer":{"@type":"Answer","text":"Non. Le nettoyage protège vos documents et le dossier Téléchargements. La Corbeille n’est vidée que si vous la sélectionnez explicitement."}},
+        {"@type":"Question","name":"Quelle différence entre l’installateur et la version portable ?","acceptedAnswer":{"@type":"Answer","text":"L’installateur ajoute OwlSetup au menu Démarrer. La version portable fonctionne directement depuis le dossier de votre choix sans installation."}},
+        {"@type":"Question","name":"Pourquoi Windows peut-il afficher un avertissement ?","acceptedAnswer":{"@type":"Answer","text":"La signature de code est en cours de mise en place. Téléchargez uniquement OwlSetup depuis la Release GitHub officielle et comparez son empreinte avec le fichier SHA256.txt publié."}}
+      ]}
+    ]
+  }
+  </script>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="platforms.css">
   <link rel="stylesheet" href="animations.css">
