@@ -4,9 +4,9 @@ Site officiel statique d’OwlSetup pour Windows.
 
 ## Adresse
 
-Le site est publié avec GitHub Pages :
+Le site est publié avec GitHub Pages et utilise le domaine officiel :
 
-https://owlnetgeekfr.github.io/OwlSetup-Website/
+https://owlsetup.owlnetgeek.fr/
 
 ## Sécurité
 
@@ -28,3 +28,8 @@ Linux et macOS sont actuellement présentés comme éditions en attente et ne pr
 ## Synchronisation automatique
 
 Le workflow `Synchroniser et publier le site` vérifie chaque heure la dernière Release stable de `OwlNetGeekFR/OwlSetup`. Il contrôle la présence de l’installateur, de la version portable et de `SHA256.txt`, actualise `release.json` si nécessaire, puis redéploie GitHub Pages. Aucun jeton partagé entre les deux dépôts n’est nécessaire.
+
+## Licence
+
+Le code du site est distribué sous licence MIT. Les marques, noms et logos
+présentés restent la propriété de leurs détenteurs respectifs.
