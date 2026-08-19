@@ -67,4 +67,27 @@ $manifest = [ordered]@{
 $output = [IO.Path]::GetFullPath($OutputPath)
 $json = $manifest | ConvertTo-Json -Depth 6 -Compress
 [IO.File]::WriteAllText($output, "$json`n", [Text.UTF8Encoding]::new($false))
-Write-Host "Release $($release.tag_name) synchronisée dans $output" -ForegroundColor Green
+
+# Synchronise également les valeurs de secours rendues avant le chargement de
+# release.json, ainsi que la version structurée lue par les moteurs de recherche.
+$culture = [Globalization.CultureInfo]::GetCultureInfo("fr-FR")
+$published = ([DateTimeOffset]$release.published_at).ToString("d MMMM yyyy", $culture)
+$installer = $assetManifest["OwlSetup-Setup.exe"]
+$portable = $assetManifest["OwlSetup.exe"]
+$installerSize = ([double]$installer.size / 1MB).ToString("0.0", $culture)
+$portableSize = ([double]$portable.size / 1MB).ToString("0.0", $culture)
+$installerHash = [string]$installer.sha256
+$shortHash = "$($installerHash.Substring(0, 8))…$($installerHash.Substring($installerHash.Length - 8))"
+$indexPath = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot "..\index.html"))
+$index = [IO.File]::ReadAllText($indexPath)
+
+$index = [regex]::Replace($index, '"softwareVersion":"[^"]+"', "`"softwareVersion`":`"$version`"")
+$index = [regex]::Replace($index, 'data-release-version>[^<]+<', { param($match) "data-release-version>$version<" })
+$index = [regex]::Replace($index, '(<small id="releaseMeta">)[^<]*(</small>)', { param($match) "$($match.Groups[1].Value)Publiée le $published · Installateur $installerSize Mo$($match.Groups[2].Value)" })
+$index = [regex]::Replace($index, '(<small id="portableMeta">)[^<]*(</small>)', { param($match) "$($match.Groups[1].Value)Aucune installation · $portableSize Mo$($match.Groups[2].Value)" })
+$index = [regex]::Replace($index, '(<code id="installerHash">)[^<]*(</code>)', { param($match) "$($match.Groups[1].Value)$shortHash$($match.Groups[2].Value)" })
+$index = [regex]::Replace($index, 'data-copy-hash="[A-Fa-f0-9]{64}"', "data-copy-hash=`"$installerHash`"")
+$index = [regex]::Replace($index, '(<a[^>]+data-release-label="Installer \{version\}"[^>]*>)Installer [^<]+(</a>)', { param($match) "$($match.Groups[1].Value)Installer $version$($match.Groups[2].Value)" })
+
+[IO.File]::WriteAllText($indexPath, $index, [Text.UTF8Encoding]::new($false))
+Write-Host "Release $($release.tag_name) synchronisée dans release.json et index.html" -ForegroundColor Green
