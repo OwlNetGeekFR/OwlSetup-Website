@@ -1,0 +1,11 @@
+.resource-pages{padding-top:18px;padding-bottom:56px}
+.resource-pages .section-heading{margin-bottom:22px}
+.resource-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.resource-card{display:flex;min-height:185px;flex-direction:column;padding:24px;border:1px solid #27364b;border-radius:18px;background:linear-gradient(145deg,#111b29,#0c1420);color:#eef6ff;text-decoration:none;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+.resource-card:hover{transform:translateY(-4px);border-color:#4f8cff;box-shadow:0 18px 44px rgba(18,72,145,.2)}
+.resource-card .resource-icon{display:grid;width:46px;height:46px;margin-bottom:28px;place-items:center;border-radius:13px;background:#17345a;color:#64dfee;font-size:22px}
+.resource-card strong{font-size:18px}
+.resource-card p{margin:8px 0 20px;color:#9dafc5;line-height:1.55}
+.resource-card em{margin-top:auto;color:#69a4ff;font-style:normal;font-weight:700}
+@media(max-width:980px){.resource-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:580px){.resource-grid{grid-template-columns:1fr}.resource-card{min-height:155px}}
