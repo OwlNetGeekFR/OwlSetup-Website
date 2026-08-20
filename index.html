@@ -36,7 +36,7 @@
     "@graph": [
       {"@type":"WebSite","@id":"https://owlsetup.owlnetgeek.fr/#website","url":"https://owlsetup.owlnetgeek.fr/","name":"OwlSetup","description":"Application gratuite et open source pour installer, mettre à jour et entretenir Windows.","inLanguage":"fr-FR","publisher":{"@id":"https://owlsetup.owlnetgeek.fr/#organization"}},
       {"@type":"Organization","@id":"https://owlsetup.owlnetgeek.fr/#organization","name":"OwlNetGeekFR","url":"https://owlnetgeek.fr/","logo":"https://owlsetup.owlnetgeek.fr/assets/owlsetup-logo.png","sameAs":["https://github.com/OwlNetGeekFR"]},
-      {"@type":"SoftwareApplication","@id":"https://owlsetup.owlnetgeek.fr/#software","name":"OwlSetup","url":"https://owlsetup.owlnetgeek.fr/","downloadUrl":"https://github.com/OwlNetGeekFR/OwlSetup/releases/latest/download/OwlSetup-Setup.exe","softwareVersion":"3.6.0","operatingSystem":"Windows 10, Windows 11","applicationCategory":"UtilitiesApplication","description":"OwlSetup installe des logiciels depuis leurs sources officielles, applique les mises à jour et aide à libérer de l’espace sur Windows.","isAccessibleForFree":true,"license":"https://github.com/OwlNetGeekFR/OwlSetup/blob/main/LICENSE","author":{"@id":"https://owlsetup.owlnetgeek.fr/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR","availability":"https://schema.org/InStock"}},
+      {"@type":"SoftwareApplication","@id":"https://owlsetup.owlnetgeek.fr/#software","name":"OwlSetup","url":"https://owlsetup.owlnetgeek.fr/","downloadUrl":"https://github.com/OwlNetGeekFR/OwlSetup/releases/latest/download/OwlSetup-Setup.exe","softwareVersion":"3.7.0","dateModified":"2026-08-02","operatingSystem":"Windows 10, Windows 11","applicationCategory":"UtilitiesApplication","description":"OwlSetup installe des logiciels depuis leurs sources officielles, applique les mises à jour et aide à libérer de l’espace sur Windows.","isAccessibleForFree":true,"license":"https://github.com/OwlNetGeekFR/OwlSetup/blob/main/LICENSE","author":{"@id":"https://owlsetup.owlnetgeek.fr/#organization"},"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR","availability":"https://schema.org/InStock"}},
       {"@type":"FAQPage","@id":"https://owlsetup.owlnetgeek.fr/#faq","mainEntity":[
         {"@type":"Question","name":"La démonstration modifie-t-elle mon ordinateur ?","acceptedAnswer":{"@type":"Answer","text":"Non. Toutes les actions du site sont simulées. Seule l’application téléchargée pour votre système peut lancer les opérations après votre confirmation."}},
         {"@type":"Question","name":"Pourquoi une autorisation administrateur peut-elle être demandée ?","acceptedAnswer":{"@type":"Answer","text":"Certaines installations, mises à jour et zones protégées nécessitent les droits administrateur. OwlSetup ne les demande que lorsque l’opération en a besoin."}},
@@ -52,25 +52,26 @@
   <link rel="stylesheet" href="animations.css">
   <link rel="stylesheet" href="local-upgrade.css">
   <link rel="stylesheet" href="support.css">
+  <link rel="stylesheet" href="seo-links.css">
 </head>
 <body>
   <div class="aurora aurora-a"></div><div class="aurora aurora-b"></div>
   <header class="topnav">
     <a class="site-brand" href="#top"><img src="assets/owlsetup-logo.png" alt=""><span><strong>OwlSetup</strong><small>Windows maintenance</small></span></a>
     <button class="menu-toggle" id="menuToggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false"><span></span><span></span><span></span></button>
-    <nav id="mainNav"><a href="#platforms">Télécharger</a><a href="#features">Fonctionnalités</a><a href="#how">Utilisation</a><a href="#demo">Démo</a><a href="#security">Sécurité</a><a href="#faq">FAQ</a><a class="support-nav" href="https://ko-fi.com/owlsetup" target="_blank" rel="noopener">Soutenir ♡</a></nav>
+    <nav id="mainNav"><a href="telecharger/">Télécharger</a><a href="fonctionnalites/">Fonctionnalités</a><a href="guide-installation/">Guide</a><a href="#demo">Démo</a><a href="securite/">Sécurité</a><a href="#faq">FAQ</a><a class="support-nav" href="https://ko-fi.com/owlsetup" target="_blank" rel="noopener">Soutenir ♡</a></nav>
     <a class="nav-download" data-release-asset="OwlSetup-Setup.exe" href="https://github.com/OwlNetGeekFR/OwlSetup/releases/latest/download/OwlSetup-Setup.exe"><span>↓</span> Télécharger</a>
   </header>
 
   <main id="top">
     <section class="hero section-shell">
       <div class="hero-copy">
-        <div class="eyebrow"><i></i> VERSION <span data-release-version>3.6.0</span> · WINDOWS 10 ET 11</div>
+        <div class="eyebrow"><i></i> VERSION <span data-release-version>3.7.0</span> · WINDOWS 10 ET 11</div>
         <h1>Votre ordinateur,<br><em>simplement prêt.</em></h1>
         <p>Installez vos logiciels essentiels, mettez à jour vos applications et récupérez de l’espace depuis une interface claire. Vous choisissez chaque opération avant son exécution.</p>
         <div class="hero-actions"><a class="button primary" data-release-asset="OwlSetup-Setup.exe" href="https://github.com/OwlNetGeekFR/OwlSetup/releases/latest/download/OwlSetup-Setup.exe">Installer pour Windows <span>→</span></a><a class="button secondary" href="#demo">Tester la démo</a></div>
         <div class="hero-trust"><span>✓ Open source</span><span>✓ Sources officielles</span><span>✓ Sans publicité</span><span>✓ Actions confirmées</span></div>
-        <div class="release-proof"><span class="release-dot"></span><div><strong>Version stable <span data-release-version>3.6.0</span></strong><small id="releaseMeta">Publiée le 24 juillet 2026 · Installateur 2,8 Mo</small></div><a data-release-page href="https://github.com/OwlNetGeekFR/OwlSetup/releases/latest">Notes de version ↗</a></div>
+        <div class="release-proof"><span class="release-dot"></span><div><strong>Version stable <span data-release-version>3.7.0</span></strong><small id="releaseMeta">Publiée le 2 août 2026 · Installateur 3,4 Mo</small></div><a data-release-page href="https://github.com/OwlNetGeekFR/OwlSetup/releases/latest">Notes de version ↗</a></div>
       </div>
       <div class="hero-visual">
         <div class="orbit orbit-1"></div><div class="orbit orbit-2"></div><div class="orbit orbit-3"></div>
@@ -91,7 +92,7 @@
           <h3>OwlSetup pour Windows</h3>
           <p>L’édition la plus complète avec WinGet, Windows Update, pilotes, réparation et quarantaine.</p>
           <ul><li>Windows 10 ou 11</li><li>Architecture 64 bits</li><li>93 logiciels disponibles</li></ul>
-          <div class="platform-meta"><span>Version <span data-release-version>3.6.0</span></span><span>Windows x64</span></div>
+          <div class="platform-meta"><span>Version <span data-release-version>3.7.0</span></span><span>Windows x64</span></div>
           <div class="download-options">
             <a class="platform-download windows-download" data-release-asset="OwlSetup-Setup.exe" href="https://github.com/OwlNetGeekFR/OwlSetup/releases/latest/download/OwlSetup-Setup.exe"><span>↓</span><span><strong>Installateur recommandé</strong><small>Menu Démarrer et raccourcis</small></span></a>
             <a class="portable-download" data-release-asset="OwlSetup.exe" href="https://github.com/OwlNetGeekFR/OwlSetup/releases/latest/download/OwlSetup.exe"><span>Version portable</span><small id="portableMeta">Aucune installation · 1,9 Mo</small></a>
@@ -117,7 +118,7 @@
           <small>Aucun fichier macOS n’est proposé pour le moment.</small>
         </article>
       </div>
-      <div class="beta-warning availability-note"><span>i</span><p><strong>Disponibilité actuelle</strong> Seule l’édition Windows <span data-release-version>3.6.0</span> est distribuée. Linux et macOS resteront en attente jusqu’à la reprise de leur développement et de leurs tests.</p></div>
+      <div class="beta-warning availability-note"><span>i</span><p><strong>Disponibilité actuelle</strong> Seule l’édition Windows <span data-release-version>3.7.0</span> est distribuée. Linux et macOS resteront en attente jusqu’à la reprise de leur développement et de leurs tests.</p></div>
     </section>
 
     <section class="how-section section-shell" id="how">
@@ -138,7 +139,7 @@
         <article><b class="cyan">◇</b><span>03</span><h3>Libérer de l’espace</h3><p>Temporaires, caches, Corbeille et anciens composants sélectionnés.</p><em>Nettoyage contrôlé →</em></article>
         <article><b class="pink">♲</b><span>04</span><h3>Gérer la quarantaine</h3><p>Restaurez les anciens dossiers ou confirmez leur suppression définitive.</p><em>Récupération intégrée →</em></article>
       </div>
-      <div class="beta-warning availability-note"><span>✓</span><p><strong>Nouveautés de la version 3.6.0</strong> Les installations et désinstallations restent utilisables en arrière-plan, les notifications sont plus claires, les rapports s’ouvrent dans une vue intégrée et le nettoyage des résidus reste soumis à votre confirmation.</p></div>
+      <div class="beta-warning availability-note"><span>✓</span><p><strong>Nouveautés de la version 3.7.0</strong> Les installations et désinstallations restent utilisables en arrière-plan, les notifications sont plus claires, les rapports s’ouvrent dans une vue intégrée et le nettoyage des résidus reste soumis à votre confirmation.</p></div>
     </section>
 
     <section class="demo-section section-shell" id="demo">
@@ -190,10 +191,20 @@
       <a class="button support-button" href="https://ko-fi.com/owlsetup" target="_blank" rel="noopener">Soutenir sur Ko-fi ♡</a>
     </section>
 
+    <section class="resource-pages section-shell" aria-labelledby="resource-title">
+      <header class="section-heading"><div><span>RESSOURCES OWLSETUP</span><h2 id="resource-title">Tout pour bien commencer.</h2><p>Choisissez la page qui correspond à votre besoin : télécharger, découvrir, vérifier ou être guidé.</p></div></header>
+      <div class="resource-grid">
+        <a class="resource-card" href="telecharger/"><span class="resource-icon" aria-hidden="true">↓</span><strong>Télécharger OwlSetup</strong><p>Installateur Windows, version portable, prérequis et empreintes SHA-256.</p><em>Voir les téléchargements →</em></a>
+        <a class="resource-card" href="fonctionnalites/"><span class="resource-icon" aria-hidden="true">⌘</span><strong>Découvrir les fonctions</strong><p>Installation groupée, mises à jour, nettoyage et outils de maintenance.</p><em>Explorer les fonctions →</em></a>
+        <a class="resource-card" href="securite/"><span class="resource-icon" aria-hidden="true">✓</span><strong>Comprendre la sécurité</strong><p>Traitement local, confirmations, télémétrie facultative et vérification des fichiers.</p><em>Consulter la sécurité →</em></a>
+        <a class="resource-card" href="guide-installation/"><span class="resource-icon" aria-hidden="true">?</span><strong>Suivre le guide</strong><p>Une prise en main simple, du téléchargement à la première opération.</p><em>Ouvrir le guide →</em></a>
+      </div>
+    </section>
+
     <section class="download-banner section-shell multi-download-banner">
       <img src="assets/owlsetup-logo.png" alt="">
-      <div><span>OWLSETUP POUR WINDOWS</span><h2>La version stable est prête.</h2><p>Téléchargez OwlSetup <span data-release-version>3.6.0</span> depuis la Release officielle GitHub. Linux et macOS arriveront ultérieurement.</p></div>
-      <a class="button primary" data-release-asset="OwlSetup-Setup.exe" data-release-label="Installer {version}" href="https://github.com/OwlNetGeekFR/OwlSetup/releases/latest/download/OwlSetup-Setup.exe">Installer 3.6.0</a>
+      <div><span>OWLSETUP POUR WINDOWS</span><h2>La version stable est prête.</h2><p>Téléchargez OwlSetup <span data-release-version>3.7.0</span> depuis la Release officielle GitHub. Linux et macOS arriveront ultérieurement.</p></div>
+      <a class="button primary" data-release-asset="OwlSetup-Setup.exe" data-release-label="Installer {version}" href="https://github.com/OwlNetGeekFR/OwlSetup/releases/latest/download/OwlSetup-Setup.exe">Installer 3.7.0</a>
     </section>
 
     <section class="faq section-shell" id="faq">
@@ -208,7 +219,7 @@
     </section>
   </main>
 
-  <footer><div class="section-shell"><a class="site-brand" href="#top"><img src="assets/owlsetup-logo.png" alt=""><span><strong>OwlSetup</strong><small>Windows disponible</small></span></a><p>Installation, mise à jour et entretien de Windows.</p><nav><a href="https://github.com/OwlNetGeekFR/OwlSetup">GitHub</a><a href="https://ko-fi.com/owlsetup" target="_blank" rel="noopener">Ko-fi</a><a href="https://github.com/OwlNetGeekFR/OwlSetup/blob/main/PRIVACY.md">Confidentialité</a><a href="https://github.com/OwlNetGeekFR/OwlSetup/issues">Assistance</a></nav><span>© 2026 OwlSetup</span></div></footer>
+  <footer><div class="section-shell"><a class="site-brand" href="#top"><img src="assets/owlsetup-logo.png" alt=""><span><strong>OwlSetup</strong><small>Windows disponible</small></span></a><p>Installation, mise à jour et entretien de Windows.</p><nav><a href="telecharger/">Télécharger</a><a href="fonctionnalites/">Fonctionnalités</a><a href="securite/">Sécurité</a><a href="guide-installation/">Guide</a><a href="https://github.com/OwlNetGeekFR/OwlSetup">GitHub</a><a href="https://ko-fi.com/owlsetup" target="_blank" rel="noopener">Ko-fi</a><a href="https://github.com/OwlNetGeekFR/OwlSetup/blob/main/PRIVACY.md">Confidentialité</a><a href="https://github.com/OwlNetGeekFR/OwlSetup/issues">Assistance</a></nav><span>© 2026 OwlSetup</span></div></footer>
 
   <div class="site-toast" id="siteToast" role="status" aria-live="polite">Empreinte SHA-256 copiée</div>
 
