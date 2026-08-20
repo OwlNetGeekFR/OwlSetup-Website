@@ -1,0 +1,6 @@
+Contact: https://github.com/OwlNetGeekFR/OwlSetup/security/advisories/new
+Contact: https://github.com/OwlNetGeekFR/OwlSetup/issues/new
+Expires: 2027-08-20T23:59:59.000Z
+Preferred-Languages: fr, en
+Canonical: https://owlsetup.owlnetgeek.fr/security.txt
+Policy: https://github.com/OwlNetGeekFR/OwlSetup/security/policy
