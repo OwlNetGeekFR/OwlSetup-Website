@@ -1,0 +1,70 @@
+.feature-grid article > .feature-icon {
+  --icon-color: #80a7ff;
+  --icon-rgb: 71, 112, 218;
+  position: relative;
+  inset: auto;
+  width: 52px;
+  height: 52px;
+  border: 1px solid rgba(var(--icon-rgb), .3);
+  border-radius: 15px;
+  background: radial-gradient(circle at 35% 25%, rgba(var(--icon-rgb), .24), rgba(var(--icon-rgb), .09) 72%);
+  color: var(--icon-color);
+  display: grid;
+  place-items: center;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .05), 0 10px 28px rgba(var(--icon-rgb), .08);
+}
+
+.feature-grid article > .feature-icon::after {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border: 1px solid rgba(var(--icon-rgb), .09);
+  border-radius: 10px;
+  pointer-events: none;
+}
+
+.feature-grid .feature-icon svg {
+  position: relative;
+  z-index: 1;
+  width: 26px;
+  height: 26px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 7px rgba(var(--icon-rgb), .3));
+}
+
+.feature-grid .feature-icon.green {
+  --icon-color: #62d7b3;
+  --icon-rgb: 50, 180, 139;
+}
+
+.feature-grid .feature-icon.cyan {
+  --icon-color: #68d9e0;
+  --icon-rgb: 44, 175, 190;
+}
+
+.feature-grid .feature-icon.pink {
+  --icon-color: #ed8eac;
+  --icon-rgb: 198, 73, 110;
+}
+
+.feature-grid article > .feature-icon + span {
+  position: absolute;
+  right: 18px;
+  top: 21px;
+  color: #3f4c60;
+  font-size: 9px;
+}
+
+.feature-grid h3 {
+  margin-top: 31px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .feature-grid .feature-icon {
+    transition: none;
+  }
+}

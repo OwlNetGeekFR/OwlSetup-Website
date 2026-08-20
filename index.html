@@ -53,6 +53,7 @@
   <link rel="stylesheet" href="local-upgrade.css">
   <link rel="stylesheet" href="support.css">
   <link rel="stylesheet" href="seo-links.css">
+  <link rel="stylesheet" href="feature-icons.css">
 </head>
 <body>
   <div class="aurora aurora-a"></div><div class="aurora aurora-b"></div>
@@ -81,44 +82,36 @@
     </section>
 
     <section class="stats section-shell">
-      <div><strong>1</strong><span>édition stable disponible</span></div><div><strong>93</strong><span>logiciels sur Windows</span></div><div><strong>100%</strong><span>sources officielles</span></div><div><strong>2</strong><span>plateformes en attente</span></div>
+      <div><strong>1</strong><span>édition stable disponible</span></div><div><strong>93</strong><span>logiciels sur Windows</span></div><div><strong>100%</strong><span>sources officielles</span></div><div><strong>10/11</strong><span>versions de Windows</span></div>
     </section>
 
     <section class="platforms section-shell" id="platforms">
-      <header class="section-heading"><div><span>DISPONIBILITÉ</span><h2>Windows est prêt</h2></div><p>La version Windows est stable. Linux et macOS restent affichés pour présenter la feuille de route, mais leur téléchargement est suspendu.</p></header>
+      <header class="section-heading"><div><span>DISPONIBILITÉ</span><h2>Windows est prêt</h2></div><p>OwlSetup est disponible pour Windows 10 et 11 en édition 64 bits.</p></header>
       <div class="platform-grid">
         <article class="platform-card windows-card">
-          <div class="platform-top"><span class="platform-icon windows-mark">⊞</span><span class="platform-status stable-status">STABLE</span></div>
+          <div class="platform-top">
+            <span class="platform-icon windows-mark" aria-hidden="true">
+              <svg viewBox="0 0 32 32" focusable="false">
+                <path class="windows-pane windows-pane-a" d="M4 6.8 14.2 5.4v9.7H4V6.8Z"/>
+                <path class="windows-pane windows-pane-b" d="M15.8 5.2 28 3.5v11.6H15.8V5.2Z"/>
+                <path class="windows-pane windows-pane-c" d="M4 16.9h10.2v9.7L4 25.2v-8.3Z"/>
+                <path class="windows-pane windows-pane-d" d="M15.8 16.9H28v11.6l-12.2-1.7v-9.9Z"/>
+              </svg>
+            </span>
+            <span class="platform-status stable-status">STABLE</span>
+          </div>
           <h3>OwlSetup pour Windows</h3>
           <p>L’édition la plus complète avec WinGet, Windows Update, pilotes, réparation et quarantaine.</p>
           <ul><li>Windows 10 ou 11</li><li>Architecture 64 bits</li><li>93 logiciels disponibles</li></ul>
           <div class="platform-meta"><span>Version <span data-release-version>3.7.0</span></span><span>Windows x64</span></div>
           <div class="download-options">
             <a class="platform-download windows-download" data-release-asset="OwlSetup-Setup.exe" href="https://github.com/OwlNetGeekFR/OwlSetup/releases/latest/download/OwlSetup-Setup.exe"><span>↓</span><span><strong>Installateur recommandé</strong><small>Menu Démarrer et raccourcis</small></span></a>
-            <a class="portable-download" data-release-asset="OwlSetup.exe" href="https://github.com/OwlNetGeekFR/OwlSetup/releases/latest/download/OwlSetup.exe"><span>Version portable</span><small id="portableMeta">Aucune installation · 1,9 Mo</small></a>
+            <a class="portable-download" data-release-asset="OwlSetup.exe" href="https://github.com/OwlNetGeekFR/OwlSetup/releases/latest/download/OwlSetup.exe"><span>Version portable</span><small id="portableMeta">Aucune installation · 3,1 Mo</small></a>
           </div>
-          <div class="checksum-box"><span><small>SHA-256 · INSTALLATEUR</small><code id="installerHash">6CDE5DF1…B420B29</code></span><button id="copyInstallerHash" type="button" data-copy-hash="6CDE5DF1C647B6F3DA59BC506E35A16F28930DB257BB010C7D72DF049B420B29">Copier</button></div>
-        </article>
-        <article class="platform-card linux-card coming-soon-card">
-          <div class="platform-top"><img class="platform-logo" src="assets/linux-tux.svg" alt="Tux, mascotte de Linux"><span class="platform-status pending-status">EN ATTENTE</span></div>
-          <h3>OwlSetup pour Linux</h3>
-          <p>Une édition GTK adaptée à APT, DNF, Pacman et Flatpak, avec le même design que Windows.</p>
-          <ul><li>Ubuntu, Fedora et Arch visés</li><li>Architecture x64 ou ARM64</li><li>Validation à venir</li></ul>
-          <div class="platform-meta"><span>Développement suspendu</span><span>Date à confirmer</span></div>
-          <button class="platform-download pending-download" type="button" disabled><span>⌛</span> Bientôt disponible</button>
-          <small>Aucun fichier Linux n’est proposé pour le moment.</small>
-        </article>
-        <article class="platform-card macos-card coming-soon-card">
-          <div class="platform-top"><img class="platform-logo apple-logo" src="assets/macos-apple.svg" alt="Édition macOS"><span class="platform-status pending-status">EN ATTENTE</span></div>
-          <h3>OwlSetup pour macOS</h3>
-          <p>Une application native Swift et WKWebView utilisant Homebrew pour gérer les logiciels.</p>
-          <ul><li>macOS 12 ou supérieur visé</li><li>Apple Silicon et Intel</li><li>Validation à venir</li></ul>
-          <div class="platform-meta"><span>Développement suspendu</span><span>Date à confirmer</span></div>
-          <button class="platform-download pending-download" type="button" disabled><span>⌛</span> Bientôt disponible</button>
-          <small>Aucun fichier macOS n’est proposé pour le moment.</small>
+          <div class="checksum-box"><span><small>SHA-256 · INSTALLATEUR</small><code id="installerHash">700DF23D…CF5BBB5A</code></span><button id="copyInstallerHash" type="button" data-copy-hash="700DF23DD8F3A4F78AA50E6FEB2D13CAA0692BCFA080A1259CDA9E68CF5BBB5A">Copier</button></div>
         </article>
       </div>
-      <div class="beta-warning availability-note"><span>i</span><p><strong>Disponibilité actuelle</strong> Seule l’édition Windows <span data-release-version>3.7.0</span> est distribuée. Linux et macOS resteront en attente jusqu’à la reprise de leur développement et de leurs tests.</p></div>
+      <div class="beta-warning availability-note"><span>i</span><p><strong>Version officielle Windows</strong> La version <span data-release-version>3.7.0</span>, ses fichiers et son empreinte SHA-256 sont synchronisés avec la dernière Release GitHub. Linux et macOS restent en attente de développement et de tests.</p></div>
     </section>
 
     <section class="how-section section-shell" id="how">
@@ -134,12 +127,12 @@
     <section class="features section-shell" id="features">
       <header class="section-heading"><div><span>TOUT AU MÊME ENDROIT</span><h2>Entretenez Windows simplement</h2></div><p>OwlSetup utilise WinGet, Windows Update et les sources officielles des éditeurs.</p></header>
       <div class="feature-grid">
-        <article><b class="blue">↓</b><span>01</span><h3>Installer des logiciels</h3><p>Choisissez plusieurs applications et lancez une installation groupée.</p><em>Catalogue officiel →</em></article>
-        <article><b class="green">↥</b><span>02</span><h3>Tout mettre à jour</h3><p>Comparez les versions et choisissez précisément les applications à actualiser.</p><em>Aperçu avant installation →</em></article>
-        <article><b class="cyan">◇</b><span>03</span><h3>Libérer de l’espace</h3><p>Temporaires, caches, Corbeille et anciens composants sélectionnés.</p><em>Nettoyage contrôlé →</em></article>
-        <article><b class="pink">♲</b><span>04</span><h3>Gérer la quarantaine</h3><p>Restaurez les anciens dossiers ou confirmez leur suppression définitive.</p><em>Récupération intégrée →</em></article>
+        <article><span class="feature-icon blue"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v10m0 0 4-4m-4 4-4-4"/><path d="M5 15v3a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-3"/></svg></span><span>01</span><h3>Installer des logiciels</h3><p>Choisissez plusieurs applications et lancez une installation groupée.</p><em>Catalogue officiel →</em></article>
+        <article><span class="feature-icon green"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5h-5"/><path d="M4 17v-5h5"/><path d="M6.1 8.2A7 7 0 0 1 18.5 7L20 12"/><path d="M17.9 15.8A7 7 0 0 1 5.5 17L4 12"/></svg></span><span>02</span><h3>Tout mettre à jour</h3><p>Comparez les versions et choisissez précisément les applications à actualiser.</p><em>Aperçu avant installation →</em></article>
+        <article><span class="feature-icon cyan"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="15" height="14" rx="3"/><path d="M3 14h15"/><path d="M7 16.5h.01"/><path d="m20 3 .45 1.55L22 5l-1.55.45L20 7l-.45-1.55L18 5l1.55-.45L20 3Z"/></svg></span><span>03</span><h3>Libérer de l’espace</h3><p>Temporaires, caches, Corbeille et anciens composants sélectionnés.</p><em>Nettoyage contrôlé →</em></article>
+        <article><span class="feature-icon pink"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7Z"/><path d="M3 3h18v4H3z"/><path d="M9 11h6"/><path d="M15.5 17a4 4 0 0 1-6.8-1.1"/><path d="M8.5 13v3h3"/></svg></span><span>04</span><h3>Gérer la quarantaine</h3><p>Restaurez les anciens dossiers ou confirmez leur suppression définitive.</p><em>Récupération intégrée →</em></article>
       </div>
-      <div class="beta-warning availability-note"><span>✓</span><p><strong>Nouveautés de la version 3.7.0</strong> Les installations et désinstallations restent utilisables en arrière-plan, les notifications sont plus claires, les rapports s’ouvrent dans une vue intégrée et le nettoyage des résidus reste soumis à votre confirmation.</p></div>
+      <div class="beta-warning availability-note"><span>✓</span><p><strong>Nouveautés de la version <span data-release-version>3.7.0</span></strong> La configuration guidée, le centre des opérations, le nettoyage des navigateurs, les thèmes clair ou sombre et les tâches en arrière-plan rendent l’entretien de Windows plus lisible. Les suppressions restent soumises à votre confirmation.</p></div>
     </section>
 
     <section class="demo-section section-shell" id="demo">
@@ -215,7 +208,6 @@
       <details><summary>L’historique est-il partagé entre les utilisateurs ?</summary><p>Non. Les notifications, journaux et rapports restent enregistrés localement dans le profil Windows de chaque utilisateur. Ils ne sont ni partagés avec les autres comptes du PC ni synchronisés en ligne.</p></details>
       <details><summary>Quelle différence entre l’installateur et la version portable ?</summary><p>L’installateur ajoute OwlSetup au menu Démarrer et facilite son lancement quotidien. La version portable fonctionne directement depuis le dossier de votre choix sans installation.</p></details>
       <details><summary>Pourquoi Windows peut-il afficher un avertissement ?</summary><p>La signature de code est en cours de mise en place. Téléchargez uniquement OwlSetup depuis la Release GitHub officielle et comparez, si nécessaire, son empreinte avec le fichier SHA256.txt publié.</p></details>
-      <details><summary>Quand Linux et macOS seront-ils disponibles ?</summary><p>Aucune date n’est annoncée pour le moment. Les deux éditions sont en attente pendant que la version Windows stable reste prioritaire.</p></details>
     </section>
   </main>
 
