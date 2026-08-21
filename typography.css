@@ -1,0 +1,68 @@
+/*
+ * Échelle typographique commune à l'accueil et aux pages internes.
+ * Les règles mobiles restent volontairement compactes.
+ */
+body {
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.topnav {
+  height: 78px;
+}
+
+.site-brand {
+  gap: 12px;
+}
+
+.site-brand strong {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.site-brand small {
+  color: #758296;
+  font-size: 11px;
+  line-height: 1.25;
+  letter-spacing: .12em;
+}
+
+.topnav nav {
+  gap: 22px;
+}
+
+.topnav nav a {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.nav-download {
+  height: 44px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.hero-copy > p {
+  max-width: 650px;
+  color: #9aaabd;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.button {
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.hero-trust {
+  color: #758296;
+  font-size: 11px;
+}
+
+@media (max-width: 580px) {
+  .topnav {
+    height: 66px;
+  }
+}
