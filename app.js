@@ -138,7 +138,7 @@ async function syncReleaseMetadata(){
     const hash=installer.sha256;
     if(/^[A-F0-9]{64}$/.test(hash)){
       $("#installerHash").textContent=`${hash.slice(0,8)}…${hash.slice(-8)}`;
-      $("#copyInstallerHash").dataset.copyHash=hash;
+      $("#copyInstallerHash").dataset.copy=hash;
     }
     document.documentElement.dataset.releaseSync="ok";
   }catch(error){
@@ -164,15 +164,16 @@ mainNav?.addEventListener("click",event=>{
 });
 
 let toastTimer;
-document.querySelectorAll("[data-copy-hash]").forEach(button=>button.addEventListener("click",async()=>{
-  const hash=button.dataset.copyHash;
+document.querySelectorAll("[data-copy]").forEach(button=>button.addEventListener("click",async()=>{
+  const valeur=button.dataset.copy;
   try{
-    await navigator.clipboard.writeText(hash);
+    await navigator.clipboard.writeText(valeur);
   }catch{
     const input=document.createElement("textarea");
-    input.value=hash;document.body.appendChild(input);input.select();document.execCommand("copy");input.remove();
+    input.value=valeur;document.body.appendChild(input);input.select();document.execCommand("copy");input.remove();
   }
   const toast=$("#siteToast");
+  toast.textContent=button.dataset.copyMessage||"Copié";
   toast.classList.add("visible");
   clearTimeout(toastTimer);
   toastTimer=setTimeout(()=>toast.classList.remove("visible"),2200);

@@ -161,3 +161,26 @@ footer > div > span { margin-left: 0; }
   .portable-download { align-items: flex-start; flex-direction: column; gap: 5px; }
   footer nav { flex-wrap: wrap; justify-content: center; }
 }
+
+/* Installation par winget. Volontairement plus visible que l'empreinte : c'est
+   la voie la plus courte, et la seule qui n'affiche pas l'avertissement de
+   reputation de Windows, le fichier ne transitant pas par le navigateur. */
+.winget-box {
+  margin-top: 10px;
+  padding: 10px 11px;
+  border: 1px solid #315b9d;
+  border-radius: 9px;
+  background: rgba(22, 45, 82, .38);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.winget-box span,
+.winget-box small,
+.winget-box code { display: block; }
+.winget-box small { color: #5892d6; font-size: 6px; letter-spacing: .12em; }
+.winget-box code { margin-top: 4px; color: #cfe0f7; font-size: 9px; font-weight: 700; }
+.winget-box button { padding: 6px 9px; border: 1px solid #3d6bb5; border-radius: 6px; color: #cfe0f7; background: #17294a; font-size: 7px; cursor: pointer; transition: border-color .2s, background .2s; }
+.winget-box button:hover { border-color: #477ff0; background: #1d3358; }
