@@ -72,6 +72,7 @@ $json = $manifest | ConvertTo-Json -Depth 6 -Compress
 # release.json, ainsi que la version structurée lue par les moteurs de recherche.
 $culture = [Globalization.CultureInfo]::GetCultureInfo("fr-FR")
 $published = ([DateTimeOffset]$release.published_at).ToString("d MMMM yyyy", $culture)
+$publishedIso = ([DateTimeOffset]$release.published_at).ToString("yyyy-MM-dd")
 $installer = $assetManifest["OwlSetup-Setup.exe"]
 $portable = $assetManifest["OwlSetup.exe"]
 $installerSize = ([double]$installer.size / 1MB).ToString("0.0", $culture)
@@ -81,12 +82,32 @@ $shortHash = "$($installerHash.Substring(0, 8))…$($installerHash.Substring($in
 $indexPath = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot "..\index.html"))
 $index = [IO.File]::ReadAllText($indexPath)
 
+# Une substitution qui ne trouve pas sa cible ne provoque AUCUNE erreur : le
+# fichier reste tel quel et la synchronisation se declare reussie. C'est ainsi
+# que le site pourrait afficher indefiniment l'empreinte d'une ancienne version.
+# Chaque marqueur doit donc etre present avant d'etre remplace.
+$marqueurs = [ordered]@{
+    "version structuree"   = '"softwareVersion":"[^"]+"'
+    "date de modification" = '"dateModified":"[^"]+"'
+    "version affichee"     = 'data-release-version>[^<]+<'
+    "meta de la Release"   = '<small id="releaseMeta">'
+    "meta de la portable"  = '<small id="portableMeta">'
+    "empreinte abregee"    = '<code id="installerHash">'
+    "empreinte a copier"   = 'data-copy="[A-Fa-f0-9]{64}"'
+}
+foreach ($marqueur in $marqueurs.GetEnumerator()) {
+    if (-not [regex]::IsMatch($index, $marqueur.Value)) {
+        throw "Marqueur introuvable dans index.html : $($marqueur.Key). La synchronisation aurait reussi sans rien mettre a jour."
+    }
+}
+
 $index = [regex]::Replace($index, '"softwareVersion":"[^"]+"', "`"softwareVersion`":`"$version`"")
+$index = [regex]::Replace($index, '"dateModified":"[^"]+"', "`"dateModified`":`"$publishedIso`"")
 $index = [regex]::Replace($index, 'data-release-version>[^<]+<', { param($match) "data-release-version>$version<" })
 $index = [regex]::Replace($index, '(<small id="releaseMeta">)[^<]*(</small>)', { param($match) "$($match.Groups[1].Value)Publiée le $published · Installateur $installerSize Mo$($match.Groups[2].Value)" })
 $index = [regex]::Replace($index, '(<small id="portableMeta">)[^<]*(</small>)', { param($match) "$($match.Groups[1].Value)Aucune installation · $portableSize Mo$($match.Groups[2].Value)" })
 $index = [regex]::Replace($index, '(<code id="installerHash">)[^<]*(</code>)', { param($match) "$($match.Groups[1].Value)$shortHash$($match.Groups[2].Value)" })
-$index = [regex]::Replace($index, 'data-copy-hash="[A-Fa-f0-9]{64}"', "data-copy-hash=`"$installerHash`"")
+$index = [regex]::Replace($index, 'data-copy="[A-Fa-f0-9]{64}"', "data-copy=`"$installerHash`"")
 $index = [regex]::Replace($index, '(<a[^>]+data-release-label="Installer \{version\}"[^>]*>)Installer [^<]+(</a>)', { param($match) "$($match.Groups[1].Value)Installer $version$($match.Groups[2].Value)" })
 
 [IO.File]::WriteAllText($indexPath, $index, [Text.UTF8Encoding]::new($false))
