@@ -184,3 +184,7 @@ footer > div > span { margin-left: 0; }
 .winget-box code { margin-top: 4px; color: #cfe0f7; font-size: 9px; font-weight: 700; }
 .winget-box button { padding: 6px 9px; border: 1px solid #3d6bb5; border-radius: 6px; color: #cfe0f7; background: #17294a; font-size: 7px; cursor: pointer; transition: border-color .2s, background .2s; }
 .winget-box button:hover { border-color: #477ff0; background: #1d3358; }
+
+/* Mention temporaire, le temps que le manifeste soit accepte chez Microsoft.
+   Pour la retirer : grep -rn "winget-bientot" . */
+.winget-box small.winget-bientot { margin-top: 6px; color: #e8b95c; font-size: 7px; letter-spacing: .02em; }
