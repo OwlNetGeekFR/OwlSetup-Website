@@ -1,0 +1,31 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import House from "@lucide/astro/icons/house";
+import Download from "@lucide/astro/icons/download";
+---
+<BaseLayout title="Page introuvable — OwlSetup" description="Cette page n’existe pas ou a été déplacée." noindex>
+  <section class="shell not-found">
+    <img src="/assets/owlsetup-logo.png" alt="" width="180" height="180">
+    <span class="eyebrow">Erreur 404</span>
+    <h1>Cette page s’est envolée.</h1>
+    <p>L’adresse est peut-être incorrecte, ou la page a été déplacée.</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="/"><House aria-hidden="true" />Retour à l’accueil</a>
+      <a class="btn" href="/telecharger/"><Download aria-hidden="true" />Télécharger OwlSetup</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .not-found {
+    display: grid;
+    justify-items: center;
+    gap: 14px;
+    padding-block: clamp(56px, 10vw, 120px) 0;
+    text-align: center;
+  }
+  img { width: 180px; height: 180px; margin-bottom: 8px; }
+  h1 { font-size: clamp(34px, 5vw, 52px); }
+  p { color: var(--muted); font-size: 18px; }
+  .actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 12px; }
+</style>

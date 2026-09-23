@@ -83,7 +83,7 @@ const current = Astro.url.pathname;
   .site-nav a[aria-current="page"] { color: var(--text); background: var(--surface-3); }
   .nav-support svg { color: #e0457b; }
 
-  .header-actions { display: flex; align-items: center; gap: 6px; }
+  .header-actions { display: flex; align-items: center; gap: 6px; margin-left: auto; }
   .header-actions .btn { margin-left: 6px; }
   .icon-btn {
     display: grid;
@@ -127,7 +127,10 @@ const current = Astro.url.pathname;
   }
   @media (max-width: 520px) {
     .hide-mobile { display: none; }
+    .header-actions { gap: 2px; }
+    .header-actions .btn { margin-left: 4px; }
+  }
+  @media (max-width: 400px) {
     .brand span { display: none; }
-    .header-actions .btn { margin-left: 2px; }
   }
 </style>

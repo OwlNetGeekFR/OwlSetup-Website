@@ -1,0 +1,107 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import CtaBand from "../components/CtaBand.astro";
+import House from "@lucide/astro/icons/house";
+import CircleCheck from "@lucide/astro/icons/circle-check";
+import RotateCcw from "@lucide/astro/icons/rotate-ccw";
+import FileLock from "@lucide/astro/icons/file-lock";
+import BadgeCheck from "@lucide/astro/icons/badge-check";
+import CodeXml from "@lucide/astro/icons/code-xml";
+import TriangleAlert from "@lucide/astro/icons/triangle-alert";
+import ShieldCheck from "@lucide/astro/icons/shield-check";
+import ArrowUpRight from "@lucide/astro/icons/arrow-up-right";
+import { release } from "../lib/release";
+import { site } from "../lib/site";
+
+const protections = [
+  { icon: House, tone: "", title: "Données locales", text: "Préférences, notifications et rapports restent dans le profil Windows de l’utilisateur." },
+  { icon: CircleCheck, tone: "green", title: "Confirmation avant action", text: "Nettoyages et désinstallations passent par un aperçu. L’UAC apparaît seulement quand Windows exige une élévation." },
+  { icon: RotateCcw, tone: "cyan", title: "Restauration facultative", text: "La création automatique d’un point de restauration est proposée, jamais imposée, et dépend de la protection système Windows." },
+  { icon: FileLock, tone: "violet", title: "Documents protégés", text: "Documents, images, musique et vidéos ne font pas partie des suppressions automatiques." },
+  { icon: BadgeCheck, tone: "", title: "Sources officielles", text: "WinGet et les pages des éditeurs servent de référence. Les résultats externes restent signalés avant ajout." },
+  { icon: CodeXml, tone: "green", title: "Code consultable", text: "Le dépôt public permet d’examiner le code, les changements et les rapports de sécurité." },
+];
+---
+<BaseLayout
+  title="Sécurité et confidentialité d’OwlSetup — Fonctionnement local et SHA-256"
+  description="Comment OwlSetup protège vos données : traitement local, confirmations avant action, télémétrie facultative, documents protégés et vérification SHA-256."
+  socialTitle="Sécurité et confidentialité d’OwlSetup"
+  socialDescription="Un outil local, sans compte, qui confirme chaque opération sensible."
+>
+  <PageHero crumb="Sécurité" eyebrow="Transparence et contrôle" trust={["Aucun compte", "Open source", "Télémétrie facultative", "Historique local"]}>
+    <Fragment slot="title">Vos données restent<br><em>sur votre PC.</em></Fragment>
+    <Fragment slot="lead">OwlSetup est conçu comme un outil local. Il affiche ce qu’il va faire, demande une confirmation pour les opérations sensibles et ne requiert aucun compte.</Fragment>
+  </PageHero>
+
+  <section class="section">
+    <div class="shell">
+      <header class="section-head" data-reveal>
+        <span class="eyebrow">Par conception</span>
+        <h2>Les protections essentielles</h2>
+      </header>
+      <div class="grid grid-3">
+        {protections.map((item, index) => (
+          <article class="card" data-reveal={String(index % 3)}>
+            <span class={`icon-tile ${item.tone}`}><item.icon aria-hidden="true" /></span>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="shell">
+      <header class="section-head" data-reveal>
+        <span class="eyebrow">Télémétrie</span>
+        <h2>Uniquement avec votre accord</h2>
+        <p>L’envoi automatique minimal peut être refusé dans les paramètres. Les diagnostics transmis excluent le nom, l’e-mail, les chemins personnels, la liste des logiciels et le contenu des journaux.</p>
+      </header>
+      <div class="grid grid-2">
+        <article class="card" data-reveal>
+          <h3>Peut être envoyé</h3>
+          <ul class="checklist">
+            <li>Version d’OwlSetup et langue</li>
+            <li>Catégorie et code technique de l’échec</li>
+            <li>Étape concernée et empreinte anonyme</li>
+          </ul>
+        </article>
+        <article class="card" data-reveal="1">
+          <h3>N’est pas envoyé</h3>
+          <ul class="checklist muted">
+            <li>Identité et adresse IP enregistrée</li>
+            <li>Documents, mots de passe ou historique du navigateur</li>
+            <li>Journal complet ou liste des applications</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell narrow">
+      <header class="section-head" data-reveal>
+        <span class="eyebrow">Vérifier les fichiers</span>
+        <h2>SHA-256 et signature numérique</h2>
+      </header>
+      <div class="notice warning" data-reveal>
+        <TriangleAlert aria-hidden="true" />
+        <p>L’exécutable stable n’est actuellement pas signé. Le SHA-256 confirme que le fichier correspond à celui publié, mais ne remplace pas une signature d’éditeur. Téléchargez toujours depuis la Release GitHub officielle.</p>
+      </div>
+      <div class="actions" data-reveal>
+        <a class="btn" href={site.security}><ShieldCheck aria-hidden="true" />Politique de sécurité</a>
+        <a class="btn" href={release.checksumsUrl}>Télécharger SHA256.txt <ArrowUpRight aria-hidden="true" /></a>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand title="Vérifier avant d’installer" text="Le guide explique la provenance du fichier, le SHA-256 et l’avertissement Windows.">
+    <a class="btn btn-primary" href="/guide-installation/">Lire le guide</a>
+  </CtaBand>
+</BaseLayout>
+
+<style>
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+</style>
