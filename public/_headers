@@ -1,5 +1,8 @@
+# La politique complète (avec les empreintes des scripts) est dans la balise
+# <meta> générée par Astro. Cet en-tête ajoute frame-ancestors, ignoré en
+# <meta>, sans directive de chargement qui bloquerait les scripts en ligne.
 /*
-  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self'; manifest-src 'self'; frame-src 'none'; upgrade-insecure-requests
+  Content-Security-Policy: base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; upgrade-insecure-requests
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), browsing-topics=()
   Referrer-Policy: strict-origin-when-cross-origin
   Strict-Transport-Security: max-age=31536000
