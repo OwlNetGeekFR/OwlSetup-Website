@@ -67,7 +67,8 @@ const canonical = new URL(Astro.url.pathname, site.url).href;
   <link rel="icon" type="image/png" href="/assets/owlsetup-logo.png">
   <link rel="apple-touch-icon" href="/assets/owlsetup-logo.png">
   <link rel="manifest" href="/site.webmanifest">
-  {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+  {/* « < » échappé : aucun texte ne peut fermer la balise script. */}
+  {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd).replace(/</g, "\\u003c")} />}
 </head>
 <body>
   <a class="skip-link" href="#contenu">Aller au contenu</a>

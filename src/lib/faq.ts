@@ -1,7 +1,12 @@
 import type { FaqItem } from "../components/Faq.astro";
 
-/** Texte brut d'une réponse HTML, pour les données structurées. */
-const plain = (html: string) => html.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
+/**
+ * Texte brut d'une réponse HTML, pour les données structurées. Les chevrons
+ * restants sont retirés : une balise imbriquée comme `<scr<b>ipt` ne doit pas
+ * se reformer.
+ */
+const plain = (html: string) =>
+  html.replace(/<[^>]*>/g, "").replace(/[<>]/g, "").replace(/\s+/g, " ").trim();
 
 export const faqJsonLd = (id: string, items: FaqItem[]) => ({
   "@type": "FAQPage",
