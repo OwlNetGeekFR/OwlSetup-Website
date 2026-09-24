@@ -44,7 +44,7 @@ jobs:
       - name: Vérifier le site
         shell: pwsh
         run: |
-          foreach ($page in "index.html", "404.html", "release.json", "telecharger/index.html", "fonctionnalites/index.html", "securite/index.html", "guide-installation/index.html", "CNAME") {
+          foreach ($page in "index.html", "404.html", "release.json", "telecharger/index.html", "fonctionnalites/index.html", "securite/index.html", "guide-installation/index.html", "CNAME", ".well-known/security.txt") {
             if (-not (Test-Path "dist/$page")) { throw "Fichier absent du site construit : $page" }
           }
           $manifest = Get-Content release.json -Raw | ConvertFrom-Json
@@ -72,13 +72,17 @@ jobs:
 
       - name: Configurer GitHub Pages
         if: github.event_name != 'pull_request'
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
+      # Sans include-hidden-files, les dossiers commençant par un point sont
+      # retirés en silence : /.well-known/security.txt répondait 404.
+      # .git et .github restent toujours exclus par l'action.
       - name: Préparer les fichiers GitHub Pages
         if: github.event_name != 'pull_request'
-        uses: actions/upload-pages-artifact@v4
+        uses: actions/upload-pages-artifact@v5
         with:
           path: dist
+          include-hidden-files: true
 
   deploy:
     if: github.event_name != 'pull_request'
@@ -90,4 +94,15 @@ jobs:
     steps:
       - name: Déployer GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
+
+      - name: Vérifier les fichiers publiés
+        env:
+          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
+        run: |
+          base="${PAGE_URL%/}/"
+          for page in "" "release.json" ".well-known/security.txt"; do
+            curl --fail --silent --show-error --output /dev/null \
+              --retry 6 --retry-delay 10 --retry-all-errors \
+              "$base$page"
+          done
