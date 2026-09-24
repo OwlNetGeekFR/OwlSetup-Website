@@ -1,0 +1,35 @@
+---
+interface Props {
+  title: string;
+  text: string;
+}
+
+const { title, text } = Astro.props;
+---
+<section class="shell cta" data-reveal>
+  <div>
+    <h2>{title}</h2>
+    <p>{text}</p>
+  </div>
+  <div class="cta-actions"><slot /></div>
+</section>
+
+<style>
+  .cta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px 40px;
+    padding: clamp(28px, 4vw, 44px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-l);
+    background:
+      radial-gradient(80% 140% at 100% 0%, var(--glow), transparent 65%),
+      var(--surface);
+    box-shadow: var(--shadow-m);
+  }
+  h2 { font-size: clamp(24px, 3vw, 30px); margin-bottom: 8px; }
+  p { color: var(--muted); max-width: 560px; }
+  .cta-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+</style>

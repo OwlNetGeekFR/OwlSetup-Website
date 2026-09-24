@@ -23,35 +23,49 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
+      # Sans cache npm : ce job a les droits d’écriture sur le dépôt et Pages.
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+
+      - name: Installer les dépendances
+        run: npm ci
+
       - name: Synchroniser la dernière Release stable
         shell: pwsh
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: ./scripts/sync-release.ps1
 
+      # La construction échoue si release.json est incomplet (src/lib/release.ts).
+      - name: Construire le site
+        run: npm run build
+
       - name: Vérifier le site
         shell: pwsh
         run: |
-          node --check app.js
+          foreach ($page in "index.html", "404.html", "release.json", "telecharger/index.html", "fonctionnalites/index.html", "securite/index.html", "guide-installation/index.html", "CNAME") {
+            if (-not (Test-Path "dist/$page")) { throw "Fichier absent du site construit : $page" }
+          }
           $manifest = Get-Content release.json -Raw | ConvertFrom-Json
-          if ($manifest.schemaVersion -ne 1) { throw "Version de manifeste invalide." }
-          if ($manifest.version -notmatch '^\d+\.\d+\.\d+$') { throw "Version OwlSetup invalide." }
-          if (-not $manifest.assets.'OwlSetup-Setup.exe'.sha256) { throw "Empreinte installateur absente." }
+          if (-not (Select-String -Path dist/index.html -SimpleMatch $manifest.assets.'OwlSetup-Setup.exe'.url -Quiet)) {
+            throw "La page d'accueil ne pointe pas vers l'installateur de la version $($manifest.version)."
+          }
           git diff --check
 
       - name: Vérifier que la branche propose les métadonnées actuelles
         if: github.event_name == 'pull_request'
-        run: git diff --exit-code -- release.json index.html
+        run: git diff --exit-code -- release.json
 
       - name: Enregistrer une nouvelle version détectée
         if: github.event_name != 'pull_request'
         shell: pwsh
         run: |
-          git diff --quiet -- release.json index.html
+          git diff --quiet -- release.json
           if ($LASTEXITCODE -ne 0) {
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add release.json index.html
+            git add release.json
             git commit -m "Synchroniser la Release OwlSetup [skip ci]"
             git push origin HEAD:main
           }
@@ -64,7 +78,7 @@ jobs:
         if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v4
         with:
-          path: .
+          path: dist
 
   deploy:
     if: github.event_name != 'pull_request'

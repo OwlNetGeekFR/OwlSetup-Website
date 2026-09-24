@@ -1,0 +1,129 @@
+---
+import Download from "@lucide/astro/icons/download";
+import Usb from "@lucide/astro/icons/usb";
+import ArrowUpRight from "@lucide/astro/icons/arrow-up-right";
+import Clock from "@lucide/astro/icons/clock";
+import CopyField from "./CopyField.astro";
+import WindowsMark from "./WindowsMark.astro";
+import { release } from "../lib/release";
+import { site } from "../lib/site";
+---
+<div class="download-panel" data-reveal>
+  <div class="dp-info">
+    <div class="dp-title">
+      <span class="dp-os"><WindowsMark size={30} /></span>
+      <div>
+        <h3>OwlSetup pour Windows</h3>
+        <span class="badge success">Stable</span>
+      </div>
+    </div>
+    <dl>
+      <div><dt>Version</dt><dd>{release.version}</dd></div>
+      <div><dt>Publiée le</dt><dd><time datetime={release.publishedIso}>{release.publishedLabel}</time></dd></div>
+      <div><dt>Système</dt><dd>Windows 10 et 11, 64 bits</dd></div>
+      <div><dt>Catalogue</dt><dd>{site.catalogSize} logiciels</dd></div>
+    </dl>
+    <div class="dp-links">
+      <a class="link-arrow" href={release.notesUrl}>Notes de version <ArrowUpRight aria-hidden="true" /></a>
+      <a class="link-arrow" href={release.checksumsUrl}>SHA256.txt <ArrowUpRight aria-hidden="true" /></a>
+    </div>
+  </div>
+
+  <div class="dp-actions">
+    <a class="btn btn-primary btn-lg dp-main" href={release.installer.url}>
+      <Download aria-hidden="true" />
+      <span class="btn-stack">
+        Télécharger l’installateur
+        <small>Recommandé · {release.installer.size} · Menu Démarrer et raccourcis</small>
+      </span>
+    </a>
+    <a class="btn btn-lg dp-alt" href={release.portable.url}>
+      <Usb aria-hidden="true" />
+      <span class="btn-stack">
+        Version portable
+        <small>Sans installation · {release.portable.size}</small>
+      </span>
+    </a>
+
+    <div class="dp-winget">
+      <CopyField label="En une commande · winget" value={site.winget} copyMessage="Commande copiée" accessibleName="Copier la commande winget" />
+      <p><Clock size={15} aria-hidden="true" /> Bientôt : la commande fonctionnera dès qu’OwlSetup sera référencé dans le catalogue winget.</p>
+    </div>
+
+    <CopyField
+      label="SHA-256 · installateur"
+      value={release.installer.sha256}
+      display={release.installer.shortHash}
+      copyMessage="Empreinte SHA-256 copiée"
+      accessibleName="Copier l’empreinte SHA-256 de l’installateur"
+    />
+  </div>
+</div>
+
+<style>
+  .download-panel {
+    display: grid;
+    grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-l);
+    background: var(--surface);
+    box-shadow: var(--shadow-l);
+    overflow: hidden;
+  }
+  .dp-info {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+    padding: clamp(24px, 4vw, 40px);
+    border-right: 1px solid var(--border);
+    background:
+      radial-gradient(90% 70% at 0% 0%, var(--glow), transparent 70%),
+      var(--surface-2);
+  }
+  .dp-title { display: flex; align-items: center; gap: 16px; }
+  .dp-title h3 { font-size: 22px; margin-bottom: 6px; }
+  .dp-os {
+    display: grid;
+    place-items: center;
+    width: 58px; height: 58px;
+    flex: none;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #1f7ae6, #3456e0);
+    color: #fff;
+    box-shadow: 0 12px 26px -12px #2257de;
+  }
+  dl { display: grid; gap: 0; margin: 0; }
+  dl div {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 11px 0;
+    border-bottom: 1px dashed var(--border);
+  }
+  dt { color: var(--muted); }
+  dd { margin: 0; font-weight: 600; text-align: right; }
+  .dp-links { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: auto; }
+
+  .dp-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: clamp(24px, 4vw, 40px);
+  }
+  .dp-main, .dp-alt { justify-content: flex-start; width: 100%; padding-block: 12px; }
+  .dp-main svg, .dp-alt svg { width: 22px; height: 22px; }
+  .dp-winget { display: grid; gap: 8px; margin-top: 10px; }
+  .dp-winget p {
+    display: flex;
+    gap: 7px;
+    color: var(--warning);
+    font-size: 14px;
+    line-height: 1.45;
+  }
+  .dp-winget p svg { flex: none; margin-top: 2px; }
+
+  @media (max-width: 860px) {
+    .download-panel { grid-template-columns: 1fr; }
+    .dp-info { border-right: 0; border-bottom: 1px solid var(--border); }
+  }
+</style>

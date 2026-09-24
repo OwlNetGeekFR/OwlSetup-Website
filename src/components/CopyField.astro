@@ -1,0 +1,75 @@
+---
+import Copy from "@lucide/astro/icons/copy";
+import Check from "@lucide/astro/icons/check";
+
+interface Props {
+  label: string;
+  value: string;
+  display?: string;
+  copyMessage: string;
+  accessibleName: string;
+}
+
+const { label, value, display = value, copyMessage, accessibleName } = Astro.props;
+---
+<div class="copy-field">
+  <div class="copy-text">
+    <span>{label}</span>
+    <code title={display !== value ? value : undefined}>{display}</code>
+  </div>
+  <button class="copy-btn" type="button" data-copy={value} data-copy-message={copyMessage} aria-label={accessibleName}>
+    <Copy class="i-copy" size={16} aria-hidden="true" />
+    <Check class="i-done" size={16} aria-hidden="true" />
+    <span>Copier</span>
+  </button>
+</div>
+
+<style>
+  .copy-field {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 12px 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface-2);
+  }
+  .copy-text { display: grid; gap: 2px; min-width: 0; flex: 1; }
+  .copy-text span {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 650;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+  code {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--text);
+    font-size: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .copy-btn {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    height: 36px;
+    padding: 0 13px;
+    border: 1px solid var(--border-strong);
+    border-radius: 9px;
+    background: var(--surface);
+    color: var(--text-2);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color .15s var(--ease), color .15s var(--ease);
+  }
+  .copy-btn:hover { border-color: var(--accent); color: var(--text); }
+  .i-done { display: none; color: var(--success); }
+  :global(.is-copied) .i-copy { display: none; }
+  :global(.is-copied) .i-done { display: block; }
+</style>

@@ -8,3 +8,20 @@ updates:
     labels:
       - dependencies
       - github-actions
+
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 3
+    groups:
+      astro:
+        patterns:
+          - "astro"
+          - "@astrojs/*"
+      fontsource:
+        patterns:
+          - "@fontsource-variable/*"
+    labels:
+      - dependencies
+      - javascript

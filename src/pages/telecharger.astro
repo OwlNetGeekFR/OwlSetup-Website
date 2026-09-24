@@ -1,0 +1,183 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import CopyField from "../components/CopyField.astro";
+import Steps from "../components/Steps.astro";
+import Faq from "../components/Faq.astro";
+import CtaBand from "../components/CtaBand.astro";
+import Download from "@lucide/astro/icons/download";
+import Usb from "@lucide/astro/icons/usb";
+import Terminal from "@lucide/astro/icons/terminal";
+import Clock from "@lucide/astro/icons/clock";
+import ShieldCheck from "@lucide/astro/icons/shield-check";
+import ArrowUpRight from "@lucide/astro/icons/arrow-up-right";
+import { release } from "../lib/release";
+import { site } from "../lib/site";
+import { faqJsonLd } from "../lib/faq";
+
+const faq = [
+  {
+    question: "Quelle architecture est prise en charge ?",
+    answer: "<p>OwlSetup cible les PC Windows 10 et 11 en 64 bits. WinGet doit être disponible sur le système.</p>",
+  },
+  {
+    question: "Le fichier SHA-256 signe-t-il l’application ?",
+    answer: "<p>Non. Il permet de vérifier qu’un fichier n’a pas été modifié. Une signature de code ajoute l’identité vérifiée de l’éditeur ; elle sera proposée ultérieurement.</p>",
+  },
+];
+
+const steps = [
+  {
+    title: "Téléchargez depuis la source officielle",
+    body: "<p>Utilisez cette page ou la section Releases du dépôt OwlSetup. Évitez les sites de téléchargement tiers.</p>",
+  },
+  {
+    title: "Vérifiez le fichier si nécessaire",
+    body: "<p>Téléchargez SHA256.txt, puis comparez l’empreinte du fichier avec <code>Get-FileHash .\\OwlSetup-Setup.exe -Algorithm SHA256</code>.</p>",
+  },
+  {
+    title: "Lisez l’avertissement Windows",
+    body: "<p>La signature numérique n’est pas encore disponible. Cet avertissement ne remplace pas la vérification de la source et du SHA-256.</p>",
+  },
+];
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: site.name,
+    operatingSystem: "Windows 10, Windows 11",
+    applicationCategory: "UtilitiesApplication",
+    downloadUrl: release.installer.url,
+    softwareVersion: release.version,
+    isAccessibleForFree: true,
+    license: site.license,
+  },
+  { "@context": "https://schema.org", ...faqJsonLd(`${site.url}/telecharger/#faq`, faq) },
+];
+---
+<BaseLayout
+  title="Télécharger OwlSetup pour Windows — Installateur et version portable"
+  description="Téléchargez OwlSetup pour Windows 10 et 11 : installateur recommandé, version portable, empreintes SHA-256 et conseils de vérification."
+  socialTitle="Télécharger OwlSetup pour Windows"
+  socialDescription="Installateur, version portable et empreintes SHA-256 publiés dans la Release GitHub officielle."
+  jsonLd={jsonLd}
+>
+  <PageHero crumb="Télécharger" eyebrow="Version officielle pour Windows" trust={["Windows 10 et 11", "Gratuit", "Open source", "Sans publicité"]}>
+    <Fragment slot="title">Télécharger <em>OwlSetup {release.version}</em></Fragment>
+    <Fragment slot="lead">Choisissez l’installateur pour une utilisation quotidienne ou la version portable pour un lancement ponctuel. Les fichiers sont publiés dans la Release GitHub officielle du {release.publishedLabel}.</Fragment>
+    <div class="hero-actions">
+      <a class="btn btn-primary btn-lg" href={release.installer.url}><Download aria-hidden="true" />Télécharger l’installateur</a>
+      <a class="btn btn-lg" href={release.portable.url}><Usb aria-hidden="true" />Version portable</a>
+    </div>
+  </PageHero>
+
+  <section class="section">
+    <div class="shell">
+      <header class="section-head" data-reveal>
+        <h2>Quelle édition choisir ?</h2>
+        <p>Les deux éditions proposent les mêmes fonctions. Seule leur intégration à Windows change.</p>
+      </header>
+      <div class="grid grid-2">
+        <article class="card edition" data-reveal>
+          <div class="edition-head">
+            <span class="icon-tile"><Download aria-hidden="true" /></span>
+            <span class="badge success">Recommandé</span>
+          </div>
+          <h3>Installateur</h3>
+          <p>Ajoute OwlSetup au menu Démarrer et crée une installation propre. C’est le meilleur choix pour la majorité des utilisateurs.</p>
+          <ul class="checklist">
+            <li>Lancement plus simple</li>
+            <li>Mises à jour de l’application détectables</li>
+            <li>Désinstallation depuis Windows</li>
+          </ul>
+          <div class="edition-file">
+            <CopyField label={`SHA-256 · ${release.installer.name}`} value={release.installer.sha256} display={release.installer.shortHash} copyMessage="Empreinte SHA-256 copiée" accessibleName="Copier l’empreinte SHA-256 de l’installateur" />
+            <a class="btn btn-primary" href={release.installer.url}><Download aria-hidden="true" />Télécharger · {release.installer.size}</a>
+          </div>
+        </article>
+        <article class="card edition" data-reveal="1">
+          <div class="edition-head">
+            <span class="icon-tile cyan"><Usb aria-hidden="true" /></span>
+          </div>
+          <h3>Version portable</h3>
+          <p>Fonctionne depuis le dossier de votre choix, sans installer OwlSetup sur le PC.</p>
+          <ul class="checklist">
+            <li>Idéale pour une clé USB</li>
+            <li>Aucun raccourci ajouté automatiquement</li>
+            <li>Supprimable en effaçant son dossier</li>
+          </ul>
+          <div class="edition-file">
+            <CopyField label={`SHA-256 · ${release.portable.name}`} value={release.portable.sha256} display={release.portable.shortHash} copyMessage="Empreinte SHA-256 copiée" accessibleName="Copier l’empreinte SHA-256 de la version portable" />
+            <a class="btn" href={release.portable.url}><Download aria-hidden="true" />Télécharger · {release.portable.size}</a>
+          </div>
+        </article>
+      </div>
+      <p class="release-links" data-reveal>
+        <a class="link-arrow" href={release.notesUrl}>Notes de la version {release.version} <ArrowUpRight aria-hidden="true" /></a>
+        <a class="link-arrow" href={release.checksumsUrl}>Toutes les empreintes (SHA256.txt) <ArrowUpRight aria-hidden="true" /></a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="shell winget">
+      <div data-reveal>
+        <span class="icon-tile violet"><Terminal aria-hidden="true" /></span>
+        <h2>Le plus rapide : une commande</h2>
+        <p>Le Gestionnaire de packages de Windows est déjà présent sur Windows 10 et 11 à jour. Cette commande télécharge et installe la dernière version stable pour vous, sans passer par le navigateur, et donc sans l’avertissement de réputation.</p>
+      </div>
+      <div class="winget-box" data-reveal="1">
+        <CopyField label="Windows PowerShell ou Terminal" value={site.winget} copyMessage="Commande copiée" accessibleName="Copier la commande winget" />
+        <div class="notice warning"><Clock aria-hidden="true" /><p><strong>Bientôt.</strong> La commande fonctionnera dès qu’OwlSetup sera référencé dans le catalogue winget.</p></div>
+        <p class="command-note">Pour mettre à jour ensuite : <code>winget upgrade owlsetup</code>. Pour désinstaller : <code>winget uninstall owlsetup</code>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell narrow">
+      <header class="section-head" data-reveal>
+        <h2>Avant le premier lancement</h2>
+      </header>
+      <Steps steps={steps} />
+      <div class="notice" data-reveal><ShieldCheck aria-hidden="true" /><p>OwlSetup peut demander une autorisation administrateur uniquement lorsqu’une installation, une mise à jour ou une opération système l’exige.</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="shell narrow">
+      <header class="section-head" data-reveal>
+        <h2>Questions de téléchargement</h2>
+      </header>
+      <div data-reveal><Faq items={faq} /></div>
+    </div>
+  </section>
+
+  <CtaBand title="Besoin d’aide pour l’installation ?" text="Suivez le guide pas à pas, y compris pour les avertissements Windows.">
+    <a class="btn btn-primary" href="/guide-installation/">Ouvrir le guide</a>
+  </CtaBand>
+</BaseLayout>
+
+<style>
+  .edition { display: flex; flex-direction: column; }
+  .edition-head { display: flex; justify-content: space-between; align-items: flex-start; }
+  .edition .checklist { margin-bottom: 24px; }
+  .edition-file { display: grid; gap: 12px; margin-top: auto; }
+  .release-links { display: flex; flex-wrap: wrap; gap: 10px 28px; margin-top: 24px; }
+
+  .winget {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(28px, 5vw, 64px);
+  }
+  .winget h2 { font-size: clamp(28px, 3.6vw, 38px); margin-bottom: 14px; }
+  .winget p { color: var(--muted); }
+  .winget-box { display: grid; gap: 14px; }
+  .winget-box .notice p { color: var(--text-2); }
+  .command-note { font-size: 15px; }
+  @media (max-width: 860px) { .winget { grid-template-columns: 1fr; } }
+
+  .narrow .notice { margin-top: 12px; }
+</style>

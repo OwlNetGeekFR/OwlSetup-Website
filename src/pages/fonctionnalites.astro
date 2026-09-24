@@ -1,0 +1,101 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import CtaBand from "../components/CtaBand.astro";
+import LayoutGrid from "@lucide/astro/icons/layout-grid";
+import RefreshCw from "@lucide/astro/icons/refresh-cw";
+import Sparkles from "@lucide/astro/icons/sparkles";
+import Globe from "@lucide/astro/icons/globe";
+import AppWindow from "@lucide/astro/icons/app-window";
+import Stethoscope from "@lucide/astro/icons/stethoscope";
+import ListChecks from "@lucide/astro/icons/list-checks";
+import ScrollText from "@lucide/astro/icons/scroll-text";
+import Layers from "@lucide/astro/icons/layers";
+import SlidersHorizontal from "@lucide/astro/icons/sliders-horizontal";
+import Info from "@lucide/astro/icons/info";
+import Play from "@lucide/astro/icons/play";
+import Download from "@lucide/astro/icons/download";
+
+const tools = [
+  { icon: LayoutGrid, tone: "", title: "Installer des logiciels", text: "Catalogue vérifié, profils prêts à l’emploi et recherche étendue dans WinGet pour installer plusieurs applications." },
+  { icon: RefreshCw, tone: "green", title: "Tout mettre à jour", text: "Recherche les nouvelles versions des applications et déclenche les composants Windows Update depuis un même parcours." },
+  { icon: Sparkles, tone: "cyan", title: "Libérer de l’espace", text: "Analyse les fichiers temporaires, caches et anciens composants avant toute suppression." },
+  { icon: Globe, tone: "violet", title: "Nettoyer les navigateurs", text: "Distingue cache, médias, rapports de plantage, cookies, données de sites et historique. Les mots de passe restent protégés." },
+  { icon: AppWindow, tone: "", title: "Gérer les applications", text: "Affiche les logiciels présents, leur origine de détection et les actions sûres : réparer, désinstaller ou gérer dans Windows." },
+  { icon: Stethoscope, tone: "green", title: "Diagnostiquer le PC", text: "Contrôle WinGet, le stockage, les applications au démarrage et l’état des composants nécessaires à OwlSetup." },
+];
+
+const results = [
+  { icon: ListChecks, title: "Centre des opérations", text: "Les tâches en cours, réussies ou à vérifier sont regroupées. Une erreur résolue ne reste pas indéfiniment comme alerte active." },
+  { icon: ScrollText, title: "Journaux lisibles", text: "Les rapports techniques sont présentés dans un lecteur intégré avec réussites, avertissements et erreurs, sans ouvrir le Bloc-notes." },
+  { icon: Layers, title: "Installation en arrière-plan", text: "L’interface reste utilisable et affiche la progression. Les applications bloquantes peuvent être identifiées avant une mise à jour." },
+  { icon: SlidersHorizontal, title: "Paramètres accessibles", text: "Langue, taille du texte, animations, thème et prise en main sont réglables pour chaque utilisateur Windows." },
+];
+---
+<BaseLayout
+  title="Fonctionnalités OwlSetup — Installer, mettre à jour et nettoyer Windows"
+  description="Découvrez les fonctions d’OwlSetup : catalogue de logiciels, mises à jour WinGet, nettoyage du disque et des navigateurs, désinstallation et diagnostics Windows."
+  socialTitle="Fonctionnalités OwlSetup"
+  socialDescription="Une interface unique pour installer, mettre à jour et entretenir Windows."
+>
+  <PageHero crumb="Fonctionnalités" eyebrow="Un centre de maintenance local" trust={["Actions contrôlées", "Rapports locaux", "Sources officielles"]}>
+    <Fragment slot="title">Entretenir Windows,<br><em>sans ligne de commande.</em></Fragment>
+    <Fragment slot="lead">OwlSetup regroupe les opérations courantes dans une interface claire. Vous analysez d’abord, vous confirmez ensuite, et un rapport local explique le résultat.</Fragment>
+  </PageHero>
+
+  <section class="section">
+    <div class="shell">
+      <header class="section-head" data-reveal>
+        <span class="eyebrow">Les fonctions principales</span>
+        <h2>Un outil pour chaque besoin</h2>
+        <p>Du premier démarrage au dépannage quotidien.</p>
+      </header>
+      <div class="grid grid-3">
+        {tools.map((tool, index) => (
+          <article class="card" data-reveal={String(index % 3)}>
+            <span class={`icon-tile ${tool.tone}`}><tool.icon aria-hidden="true" /></span>
+            <h3>{tool.title}</h3>
+            <p>{tool.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="shell">
+      <header class="section-head" data-reveal>
+        <span class="eyebrow">Après chaque opération</span>
+        <h2>Un résultat compréhensible</h2>
+      </header>
+      <div class="grid grid-2">
+        {results.map((item, index) => (
+          <article class="card result" data-reveal={String(index % 2)}>
+            <span class="icon-tile"><item.icon aria-hidden="true" /></span>
+            <div>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+      <div class="notice success honest" data-reveal>
+        <Info aria-hidden="true" />
+        <p>OwlSetup ne promet pas de rendre un PC « miraculeusement plus rapide ». Il automatise des opérations Windows réelles, réversibles lorsque c’est possible, et les explique.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="section">
+    <CtaBand title="Voir OwlSetup en action" text="Essayez la démonstration du site ou installez la version Windows.">
+      <a class="btn" href="/#demo"><Play aria-hidden="true" />Essayer la démo</a>
+      <a class="btn btn-primary" href="/telecharger/"><Download aria-hidden="true" />Télécharger</a>
+    </CtaBand>
+  </div>
+</BaseLayout>
+
+<style>
+  .result { display: flex; gap: 18px; }
+  .result .icon-tile { margin: 0; flex: none; }
+  .honest { margin-top: 24px; }
+</style>

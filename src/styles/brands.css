@@ -1,0 +1,28 @@
+/*
+ * Tuiles de logos. Les fichiers de public/assets/logos sont des icônes
+ * blanches (Simple Icons) : elles sont posées sur la couleur de leur marque.
+ */
+.logo-tile {
+  --brand: #4a5568;
+  display: grid;
+  place-items: center;
+  flex: none;
+  border-radius: 10px;
+  background: var(--brand);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / .08), 0 4px 10px -6px var(--brand);
+}
+.logo-tile img { width: 58%; height: 58%; object-fit: contain; }
+
+.logo-tile[data-brand="bitwarden"] { --brand: #175ddc; }
+.logo-tile[data-brand="discord"] { --brand: #5865f2; }
+.logo-tile[data-brand="docker"] { --brand: #2496ed; }
+.logo-tile[data-brand="firefox"] { --brand: #ff7139; }
+.logo-tile[data-brand="googlechrome"] { --brand: #4285f4; }
+.logo-tile[data-brand="libreoffice"] { --brand: #18a303; }
+.logo-tile[data-brand="notepadpp"] { --brand: #4e9a3f; }
+.logo-tile[data-brand="obs"] { --brand: #302e31; }
+.logo-tile[data-brand="sevenzip"] { --brand: #596477; }
+.logo-tile[data-brand="spotify"] { --brand: #1db954; }
+.logo-tile[data-brand="steam"] { --brand: #1b2838; }
+.logo-tile[data-brand="vlc"] { --brand: #f08a24; }
+.logo-tile[data-brand="vscode"] { --brand: #1e2a3a; }

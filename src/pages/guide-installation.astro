@@ -1,0 +1,158 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import Steps from "../components/Steps.astro";
+import CopyField from "../components/CopyField.astro";
+import Faq from "../components/Faq.astro";
+import CtaBand from "../components/CtaBand.astro";
+import Clock from "@lucide/astro/icons/clock";
+import Info from "@lucide/astro/icons/info";
+import Download from "@lucide/astro/icons/download";
+import { site } from "../lib/site";
+import { faqJsonLd } from "../lib/faq";
+
+const steps = [
+  {
+    title: "Télécharger l’installateur officiel",
+    body: "<p>Cliquez sur « Télécharger l’installateur » depuis la page officielle. Le fichier attendu se nomme <strong>OwlSetup-Setup.exe</strong>.</p><p><a href=\"/telecharger/\">Accéder aux téléchargements →</a></p>",
+  },
+  {
+    title: "Contrôler la source",
+    body: "<p>Vérifiez que l’adresse appartient à <strong>github.com/OwlNetGeekFR/OwlSetup</strong>. Pour un contrôle supplémentaire, comparez l’empreinte au fichier SHA256.txt.</p>",
+  },
+  {
+    title: "Ouvrir OwlSetup-Setup.exe",
+    body: "<p>Windows peut afficher un avertissement parce que la signature de code n’est pas encore disponible. Ne continuez que si le fichier vient de la Release officielle et correspond au SHA-256 publié.</p>",
+  },
+  {
+    title: "Suivre l’assistant",
+    body: "<p>Choisissez le dossier proposé, terminez l’installation, puis ouvrez OwlSetup depuis le menu Démarrer. Une autorisation administrateur peut être demandée.</p>",
+  },
+  {
+    title: "Configurer le premier démarrage",
+    body: "<p>Sélectionnez la langue, le thème et vos préférences de confidentialité. Le guide animé peut être ignoré puis relancé depuis Paramètres.</p>",
+  },
+  {
+    title: "Lancer une première opération",
+    body: "<p>Commencez par l’analyse ou installez une application simple comme 7-Zip. Lisez l’aperçu, confirmez, puis consultez le résultat.</p>",
+  },
+];
+
+const messages = [
+  { title: "« Autorisation administrateur »", text: "Windows demande votre accord pour une action système. Vérifiez le nom d’OwlSetup et l’opération avant d’accepter." },
+  { title: "« Redémarrage du PC conseillé »", text: "Windows a des remplacements de fichiers en attente. Enregistrez votre travail, puis redémarrez complètement l’ordinateur." },
+  { title: "« Fermez l’application »", text: "Une mise à jour ne peut remplacer un fichier encore utilisé. Fermez aussi l’icône de l’application dans la zone de notification." },
+  { title: "« À vérifier »", text: "Le résultat n’est pas forcément un échec. OwlSetup peut vérifier ensuite si le logiciel est réellement installé ou mis à jour." },
+];
+
+const faq = [
+  {
+    question: "OwlSetup ne démarre pas",
+    answer: "<p>Redémarrez Windows, vérifiez que WebView2 est installé et relancez depuis le menu Démarrer. Consultez ensuite le centre de dépannage.</p>",
+  },
+  {
+    question: "WinGet n’est pas disponible",
+    answer: "<p>Mettez à jour « Programme d’installation d’application » depuis Microsoft Store, puis utilisez le diagnostic WinGet dans OwlSetup.</p>",
+  },
+  {
+    question: "Une installation reste bloquée",
+    answer: "<p>Fermez l’application ciblée, patientez jusqu’à la fin de l’installateur visible, puis utilisez « Actualiser » dans le centre des opérations.</p>",
+  },
+];
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: "Installer OwlSetup sur Windows",
+    description: "Télécharger, vérifier et installer OwlSetup sur Windows 10 ou 11.",
+    totalTime: "PT5M",
+    step: steps.map((step, index) => ({
+      "@type": "HowToStep",
+      position: index + 1,
+      name: step.title,
+      text: step.body.replace(/<[^>]+>/g, "").replace("Accéder aux téléchargements →", "").trim(),
+    })),
+  },
+  { "@context": "https://schema.org", ...faqJsonLd(`${site.url}/guide-installation/#depannage`, faq) },
+];
+---
+<BaseLayout
+  title="Guide d’installation OwlSetup sur Windows 10 et 11"
+  description="Installez OwlSetup pas à pas : téléchargement officiel, vérification SHA-256, avertissement Windows, premier démarrage et dépannage."
+  socialTitle="Installer OwlSetup, étape par étape"
+  socialDescription="Du téléchargement à la première opération, en environ cinq minutes."
+  jsonLd={jsonLd}
+>
+  <PageHero crumb="Guide d’installation" eyebrow="Guide pour débuter" trust={["Niveau débutant", "Windows 10 et 11", "Environ 5 minutes"]}>
+    <Fragment slot="title">Installer OwlSetup,<br><em>étape par étape.</em></Fragment>
+    <Fragment slot="lead">Ce parcours va du téléchargement à la première opération. Comptez environ cinq minutes, sans ligne de commande obligatoire.</Fragment>
+  </PageHero>
+
+  <section class="section">
+    <div class="shell narrow">
+      <header class="section-head" data-reveal>
+        <span class="eyebrow">Installation recommandée</span>
+        <h2>Six étapes, dans l’ordre</h2>
+      </header>
+      <Steps steps={steps} />
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="shell narrow">
+      <header class="section-head" data-reveal>
+        <span class="eyebrow">Variante</span>
+        <h2>Tout en une commande</h2>
+        <p>Si vous êtes à l’aise avec le Terminal, cette commande remplace les quatre premières étapes : elle télécharge, vérifie et installe OwlSetup pour vous.</p>
+      </header>
+      <div class="winget" data-reveal>
+        <CopyField label="Windows PowerShell ou Terminal" value={site.winget} copyMessage="Commande copiée" accessibleName="Copier la commande winget" />
+        <div class="notice warning"><Clock aria-hidden="true" /><p><strong>Bientôt.</strong> La commande fonctionnera dès qu’OwlSetup sera référencé dans le catalogue winget.</p></div>
+        <p class="note">Les étapes 05 et 06 restent identiques : la configuration du premier démarrage et la première opération se font dans OwlSetup.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="shell">
+      <header class="section-head" data-reveal>
+        <span class="eyebrow">Pendant l’utilisation</span>
+        <h2>Comprendre les messages courants</h2>
+      </header>
+      <div class="grid grid-2">
+        {messages.map((item, index) => (
+          <article class="card" data-reveal={String(index % 2)}>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="depannage">
+    <div class="shell narrow">
+      <header class="section-head" data-reveal>
+        <span class="eyebrow">Dépannage rapide</span>
+        <h2>Un souci au démarrage ?</h2>
+      </header>
+      <div data-reveal><Faq items={faq} /></div>
+      <div class="notice success diag" data-reveal>
+        <Info aria-hidden="true" />
+        <p>OwlSetup conserve ses rapports localement. Pour demander de l’aide, vous pouvez copier un diagnostic anonymisé après avoir vérifié son aperçu, puis ouvrir une <a href={site.issues}>demande d’assistance sur GitHub</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand title="Prêt à commencer ?" text="Téléchargez la dernière version depuis GitHub et gardez ce guide ouvert.">
+    <a class="btn btn-primary" href="/telecharger/"><Download aria-hidden="true" />Télécharger OwlSetup</a>
+  </CtaBand>
+</BaseLayout>
+
+<style>
+  .winget { display: grid; gap: 14px; }
+  .note { color: var(--muted); }
+  .diag { margin-top: 20px; }
+  .diag a { color: var(--accent-text); font-weight: 600; text-decoration: underline; }
+</style>

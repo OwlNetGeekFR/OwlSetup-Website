@@ -5,6 +5,12 @@
 *.7z
 downloads/
 
+# Dépendances et sorties de build Astro.
+node_modules/
+dist/
+.astro/
+.vite/
+
 # Fichiers locaux.
 .DS_Store
 Thumbs.db

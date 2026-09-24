@@ -1,0 +1,136 @@
+---
+import Menu from "@lucide/astro/icons/menu";
+import X from "@lucide/astro/icons/x";
+import Sun from "@lucide/astro/icons/sun";
+import Moon from "@lucide/astro/icons/moon";
+import Heart from "@lucide/astro/icons/heart";
+import GithubMark from "./GithubMark.astro";
+import { nav, site } from "../lib/site";
+
+const current = Astro.url.pathname;
+---
+<header class="site-header">
+  <div class="shell header-inner">
+    <a class="brand" href="/" aria-label="OwlSetup, accueil">
+      <img src="/assets/owlsetup-logo.png" alt="" width="40" height="40">
+      <span>OwlSetup</span>
+    </a>
+
+    <nav class="site-nav" id="site-nav" aria-label="Navigation principale">
+      <ul>
+        {nav.map((item) => (
+          <li><a href={item.href} aria-current={current === item.href ? "page" : undefined}>{item.label}</a></li>
+        ))}
+        <li><a class="nav-support" href={site.kofi} target="_blank" rel="noopener"><Heart size={15} aria-hidden="true" />Soutenir</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <a class="icon-btn hide-mobile" href={site.repo} aria-label="Code source sur GitHub"><GithubMark size={19} /></a>
+      <button class="icon-btn" type="button" data-theme-toggle aria-label="Changer de thème">
+        <Sun class="icon-sun" size={19} aria-hidden="true" />
+        <Moon class="icon-moon" size={19} aria-hidden="true" />
+      </button>
+      <a class="btn btn-primary btn-sm" href="/telecharger/" aria-current={current === "/telecharger/" ? "page" : undefined}>Télécharger</a>
+      <button class="icon-btn menu-btn" type="button" data-menu-toggle aria-controls="site-nav" aria-expanded="false" aria-label="Ouvrir le menu">
+        <Menu class="icon-open" size={20} aria-hidden="true" />
+        <X class="icon-close" size={20} aria-hidden="true" />
+      </button>
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    border-bottom: 1px solid var(--border);
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
+    backdrop-filter: saturate(1.6) blur(16px);
+  }
+  .header-inner {
+    height: var(--header-h);
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-display);
+    font-size: 19px;
+    font-weight: 800;
+    letter-spacing: -.02em;
+  }
+  .brand img { width: 40px; height: 40px; }
+
+  .site-nav { margin-right: auto; }
+  .site-nav ul { display: flex; gap: 4px; margin: 0; padding: 0; list-style: none; }
+  .site-nav a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    border-radius: 9px;
+    color: var(--text-2);
+    font-size: 15px;
+    font-weight: 550;
+    transition: color .15s var(--ease), background-color .15s var(--ease);
+  }
+  .site-nav a:hover { color: var(--text); background: var(--surface-3); }
+  .site-nav a[aria-current="page"] { color: var(--text); background: var(--surface-3); }
+  .nav-support svg { color: #e0457b; }
+
+  .header-actions { display: flex; align-items: center; gap: 6px; margin-left: auto; }
+  .header-actions .btn { margin-left: 6px; }
+  .icon-btn {
+    display: grid;
+    place-items: center;
+    width: 40px; height: 40px;
+    border: 0;
+    border-radius: 10px;
+    background: transparent;
+    color: var(--text-2);
+    cursor: pointer;
+    transition: color .15s var(--ease), background-color .15s var(--ease);
+  }
+  .icon-btn:hover { color: var(--text); background: var(--surface-3); }
+
+  /* Affiche l'icône du thème vers lequel on bascule. */
+  .icon-sun { display: none; }
+  :global(:root[data-resolved-theme="dark"]) .icon-sun { display: block; }
+  :global(:root[data-resolved-theme="dark"]) .icon-moon { display: none; }
+
+  .menu-btn { display: none; }
+  .icon-close { display: none; }
+  .menu-btn[aria-expanded="true"] .icon-open { display: none; }
+  .menu-btn[aria-expanded="true"] .icon-close { display: block; }
+
+  @media (max-width: 960px) {
+    .menu-btn { display: grid; }
+    .site-nav {
+      position: absolute;
+      top: var(--header-h);
+      left: 0; right: 0;
+      margin: 0;
+      padding: 12px var(--gutter) 20px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+      box-shadow: var(--shadow-m);
+      display: none;
+    }
+    .site-nav.is-open { display: block; }
+    .site-nav ul { flex-direction: column; gap: 2px; }
+    .site-nav a { display: flex; padding: 12px 14px; font-size: 16px; }
+  }
+  @media (max-width: 520px) {
+    .hide-mobile { display: none; }
+    .header-actions { gap: 2px; }
+    .header-actions .btn { margin-left: 4px; }
+  }
+  @media (max-width: 400px) {
+    .brand span { display: none; }
+  }
+</style>
