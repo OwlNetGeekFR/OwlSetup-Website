@@ -21,7 +21,7 @@ jobs:
   prepare:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       # Sans cache npm : ce job a les droits d’écriture sur le dépôt et Pages.
       - uses: actions/setup-node@v7
